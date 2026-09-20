@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" class="locked">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Raveoween 2nd Anniversary | Oct 31 | 9PM</title>
+  <meta name="description" content="Raveoween 2nd Anniversary. October 31, 9PM. A Gathering Of The Alter Egos. Read the house rules before buying your ticket.">
+  <meta name="theme-color" content="#030303">
+
+  <!-- Social preview. Swap the relative path for your full URL once deployed, e.g. https://yoursite.netlify.app/assets/img/flyer-anniversary.webp -->
+  <meta property="og:title" content="Raveoween 2nd Anniversary">
+  <meta property="og:description" content="October 31, 9PM. A Gathering Of The Alter Egos.">
+  <meta property="og:image" content="assets/img/flyer-anniversary.webp">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Shared distortion filter. Only applied to elements while they "tear" (see script.js) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="warp" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.004 0.09" numOctaves="1" seed="4" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="0" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Atmosphere layers -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="glow" aria-hidden="true"></div>
+  <div class="flash" aria-hidden="true"></div>
+
+  <!-- 1. LOADING -->
+  <div id="loader" role="status" aria-live="polite">
+    <div class="loader-inner">
+      <div class="count" id="count">000</div>
+      <p class="msg" id="msg">Killing the lights</p>
+    </div>
+    <div class="loader-line"></div>
+  </div>
+
+  <!-- Fixed bar: wordmark (appears after the hero), tickets, sound -->
+  <header class="bar" id="bar">
+    <a class="bar-mark" href="#gate" aria-label="Raveoween, back to top"></a>
+    <nav class="bar-right">
+      <a class="bar-tickets" href="https://www.eventcove.africa/events/raveoweenanniversary" target="_blank" rel="noopener noreferrer">Tickets</a>
+      <button class="sound" id="sound" type="button" aria-pressed="false" aria-label="Sound off. Press to turn sound on.">
+        <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="sound-lbl" id="soundLbl">Sound off</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- 2. INTRO / GATE: title, 2nd anniversary, countdown, enter -->
+    <section class="gate" id="gate">
+      <div class="gate-02" aria-hidden="true">02</div>
+      <img class="spider-decor spider-decor--hero" src="assets/img/r-spider.png" alt="" aria-hidden="true" width="1638" height="2048">
+
+      <h1 class="wordmark" id="wordmark" aria-label="Raveoween"></h1>
+      <p class="gate-sub">2nd Anniversary</p>
+
+      <button class="face-btn" id="face" type="button" aria-label="Wake the grin">
+        <img class="face" src="assets/img/face.png" alt="" width="830" height="680" decoding="async">
+      </button>
+
+      <div class="countdown" id="countdown" role="timer" aria-label="Countdown to October 31 at 9PM">
+        <div class="cd"><b id="cd-d">00</b><span>days</span></div>
+        <div class="cd"><b id="cd-h">00</b><span>hours</span></div>
+        <div class="cd"><b id="cd-m">00</b><span>minutes</span></div>
+        <div class="cd"><b id="cd-s">00</b><span>seconds</span></div>
+      </div>
+      <p class="countdown-done" id="cdDone" hidden>The night is here.</p>
+
+      <div class="enter">
+        <button class="btn-enter" id="enterSound" type="button">Enter Raveoween</button>
+        <button class="btn-quiet" id="enterSilent" type="button">Enter without sound</button>
+        <p class="enter-note">Oct 31 &nbsp;/&nbsp; 9PM &nbsp;/&nbsp; Headphones recommended</p>
+        <p class="ticket-warning">Be sure to read our house rules.<br><strong>Don't buy a ticket if this isn't your cup of tea.</strong></p>
+      </div>
+    </section>
+
+    <section class="halloween-teaser" aria-label="Halloween is coming">
+      <video class="halloween-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/r-spider.png">
+        <source src="assets/video/halloween-is-coming.mp4" type="video/mp4">
+      </video>
+      <div class="halloween-overlay"></div>
+      <div class="halloween-copy">
+        <p>Our 2nd Anniversary is coming</p>
+        <span>October 31 / 9PM</span>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Raveoween<i></i>2nd Anniversary<i></i>Oct 31<i></i>9PM<i></i></span>
+        <span>Raveoween<i></i>2nd Anniversary<i></i>Oct 31<i></i>9PM<i></i></span>
+        <span>Raveoween<i></i>2nd Anniversary<i></i>Oct 31<i></i>9PM<i></i></span>
+        <span>Raveoween<i></i>2nd Anniversary<i></i>Oct 31<i></i>9PM<i></i></span>
+      </div>
+    </div>
+
+    <!-- 3. THE EXPERIENCE: scroll-driven manifesto over the grin -->
+    <section class="exp" id="experience">
+      <div class="exp-stick">
+        <img class="exp-face" src="assets/img/face.png" alt="" width="830" height="680" loading="lazy" decoding="async">
+        <div class="exp-copy">
+          <p class="manifesto" id="manifesto">
+            <span class="sr">A Gathering Of The Alter Egos.</span>
+            <span class="mline" aria-hidden="true" data-words="A Gathering Of The"></span>
+            <span class="mline" aria-hidden="true" data-words="Alter Egos."></span>
+          </p>
+          <ul class="rules">
+            <li class="rule">Be who you wanna be.</li>
+            <li class="rule">Wear whatever the f**k you wanna wear.</li>
+            <li class="rule">No photos. No videos.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. TICKETS + HOUSE RULES -->
+    <section class="ticket-rules" id="house-rules">
+      <div class="ticket-panel rv">
+        <p class="eyebrow">Before you enter</p>
+        <h2>Get your ticket.</h2>
+        <p>Raveoween is a gathering of the alter egos. Know what you're walking into before you buy.</p>
+        <a class="ticket ticket--compact" href="https://www.eventcove.africa/events/raveoweenanniversary" target="_blank" rel="noopener noreferrer">
+          <span class="ticket-text">Get tickets</span>
+        </a>
+        <a class="carpool-link" href="https://forms.gle/FagbsCa4zGRa94hB8" target="_blank" rel="noopener noreferrer">Need a ride? Join the carpool</a>
+        <p class="ticket-note">Be sure to read our house rules.<br><strong>Don't buy a ticket if this isn't your cup of tea.</strong></p>
+      </div>
+
+      <div class="house-rules rv">
+        <div class="house-rules-heading">
+          <p class="eyebrow">Please read</p>
+          <h2>House Rules</h2>
+          <p>Raveoween is not for everyone.</p>
+        </div>
+        <ol class="house-rules-list">
+          <li><h3>Respect The Space</h3><p>Raveoween is a celebration of freedom and expression for the ALTER EGO, not just a night out. Protect the culture, embrace the energy, and move with intention. Immerse yourself in the moment, and truly live the experience. If your purpose is to seek attention, chase clout, or curate social media moments, this isn't the place for you.</p></li>
+          <li><h3>No Photos/Videos Allowed</h3><p>This space is meant to be felt, not filmed. Experience the music, the energy, and the raw connection without the distraction of a screen. No photos and videos once you enter the venue. Cameras will be stickered upon entry, and anyone caught recording will be removed immediately.</p></li>
+          <li><h3>No harassment or hate will be tolerated</h3><p>This space was built on unity, freedom, and expression. House music was born from marginalized communities who created these movements as sanctuaries of acceptance. There is zero tolerance for discrimination, hate, or violence of any kind. Sexism, racism, homophobia, transphobia, or any form of exclusion will not be tolerated.</p></li>
+          <li><h3>Consent is Non-Negotiable</h3><p>The absence of a clear, enthusiastic “YES” is always a “NO”. Boundaries must be honored, and any form of unwanted contact is unacceptable. Intoxication is never an excuse. Everyone deserves to feel safe, comfortable, and in control of their own experience.</p></li>
+          <li><h3>Be Conscious</h3><p>We are all responsible for maintaining a safe and inclusive space. If you see something that feels wrong — SPEAK UP. Whether it's someone in distress, inappropriate behavior, or a situation that doesn't sit right, don't stay silent. Safety is collective. Watch out for your friends, check in on those around you and don't hesitate to reach out to staff or security if needed. Let's protect each other.</p></li>
+          <li><h3>Let The People Dance</h3><p>The dancefloor is a space for pure connection between music, movement, and energy. When someone is lost in the rhythm, let them stay there. Not every moment needs words, a tap on the shoulder, or a distraction. Let the music speak, and allow everyone to experience their journey uninterrupted.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 5. ARTISTS / DJS -->
+    <section class="artists" id="artists">
+      <h2 class="h2 rv">Artists<span> / DJs</span></h2>
+
+      <div class="poster-grid">
+        <div class="poster-wrap" data-speed="0.06">
+          <figure class="poster rv" id="p-funsyde">
+            <div class="poster-img"><img src="assets/img/funsyde.webp" alt="Funsyde. Raveoween flyer with a ghost-faced mask." width="392" height="532" loading="lazy" decoding="async"></div>
+            <figcaption class="poster-name">Funsyde</figcaption>
+          </figure>
+        </div>
+        <div class="poster-wrap poster-wrap--b" data-speed="-0.05">
+          <figure class="poster rv" id="p-lollypop">
+            <div class="poster-img"><img src="assets/img/lollypop.webp" alt="Lollypop. Raveoween flyer with a pale-faced nun." width="398" height="516" loading="lazy" decoding="async"></div>
+            <figcaption class="poster-name">Lollypop</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ARCHIVE / PREVIOUS EDITION -->
+    <section class="archive" id="archive">
+      <h2 class="h2 rv">Archive<span> / previous edition</span></h2>
+
+      <div class="archive-grid">
+        <div class="nophoto rv">
+          <img src="assets/img/no-photos.webp" alt="Raveoween policy sign: no photography, no live-streaming, no recording." width="607" height="1080" loading="lazy" decoding="async">
+        </div>
+
+        <div class="archive-copy">
+          <p class="statement rv">The archive is empty.<br>On purpose.</p>
+          <p class="body rv">This space is meant to be felt, not filmed. Experience the music, the energy and the raw connection without a screen in the way. No photos or videos once you enter the venue. Cameras get stickered at the door, and anyone caught recording is removed.</p>
+
+          <!--
+            PREVIOUS EDITION PHOTOS
+            Add approved images to /assets/img/ and drop them in here, e.g.
+            <img class="archive-shot" src="assets/img/edition-01-a.webp" alt="Raveoween first edition" loading="lazy">
+          -->
+
+          <ul class="links rv">
+            <li><a href="https://x.com/raveoweenlagos/media" target="_blank" rel="noopener noreferrer">What was shared on X</a></li>
+            <li><a href="https://www.instagram.com/raveoweenexperience/" target="_blank" rel="noopener noreferrer">What was shared on Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. EVENT INFORMATION -->
+    <section class="info" id="info">
+      <h2 class="h2 rv">The night</h2>
+
+      <div class="info-grid">
+        <dl class="facts rv">
+          <div><dt>Date</dt><dd>October 31</dd></div>
+          <div><dt>Time</dt><dd>9PM</dd></div>
+          <div><dt>Occasion</dt><dd>2nd Anniversary</dd></div>
+          <div><dt>Venue</dt><dd class="small"><a href="https://www.eventcove.africa/events/raveoweenanniversary" target="_blank" rel="noopener noreferrer">Full details on EventCove</a></dd></div>
+          <div><dt>House rules</dt><dd class="small"><a href="#house-rules">Read the house rules</a></dd></div>
+          <div><dt>Carpool</dt><dd class="small"><a href="https://forms.gle/FagbsCa4zGRa94hB8" target="_blank" rel="noopener noreferrer">Join the carpool</a></dd></div>
+        </dl>
+
+        <div class="flyer-wrap" data-speed="0.05">
+          <img class="flyer rv" src="assets/img/flyer-anniversary.webp" alt="Raveoween 2nd Anniversary flyer. October 31, 9PM." width="750" height="938" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. GET TICKETS -->
+    <section class="tickets" id="tickets">
+      <a class="ticket" id="ticketBig" href="https://www.eventcove.africa/events/raveoweenanniversary" target="_blank" rel="noopener noreferrer">
+        <span class="ticket-text">Get tickets</span>
+      </a>
+      <p class="tickets-note">Tickets are sold on EventCove. The link opens in a new tab.</p>
+
+      <ul class="socials">
+        <li><a href="https://www.instagram.com/raveoweenexperience/" target="_blank" rel="noopener noreferrer">Instagram<span>@raveoweenexperience</span></a></li>
+        <li><a href="https://x.com/raveoweenlagos" target="_blank" rel="noopener noreferrer">X<span>@raveoweenlagos</span></a></li>
+      </ul>
+    </section>
+
+    <footer class="foot">
+      <p>Raveoween 2nd Anniversary. Oct 31, 9PM.</p>
+      <a href="#top">Back into the dark</a>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
