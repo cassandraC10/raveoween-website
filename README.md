@@ -32,3 +32,9 @@ The feedback form uses Netlify Forms. Enable **Forms → Form detection** in Net
 
 
 Audio source note: the wolf howl uses the public-domain Wolf Howl Sound from Orange Free Sounds (https://www.orangefreesounds.com/wolf-howl-sound/). The page states the sound may be used commercially without prior permission.
+
+
+## Link preview / icon
+- Browser favicon and social preview use the Raveoween logo in `assets/img/logo.png`.
+- The larger `assets/img/raveoween-preview.png` is used for WhatsApp/X/other link previews.
+- Preview services may cache an older image; re-sharing after the new deployment may be required.
