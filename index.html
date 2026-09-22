@@ -49,7 +49,7 @@
 
   <!-- Fixed bar: wordmark (appears after the hero), tickets, sound -->
   <header class="bar" id="bar">
-    <a class="bar-mark" href="#gate" aria-label="Raveoween, back to top"></a>
+    <a class="bar-mark" href="#gate" aria-label="Raveoween, back to top"><img src="assets/img/raveoween-original-logo.png" alt="Raveoween"></a>
     <nav class="bar-right">
       <a class="bar-tickets" href="https://www.eventcove.africa/events/raveoweenanniversary" target="_blank" rel="noopener noreferrer">Tickets</a>
       <button class="sound" id="sound" type="button" aria-pressed="false" aria-label="Sound off. Press to turn sound on.">
@@ -64,8 +64,6 @@
     <!-- 2. INTRO / GATE: title, 2nd anniversary, countdown, enter -->
     <section class="gate" id="gate">
       <div class="gate-02" aria-hidden="true">02</div>
-      <img class="spider-decor spider-decor--hero" src="assets/img/r-spider.png" alt="" aria-hidden="true" width="1638" height="2048">
-
       <h1 class="wordmark" id="wordmark" aria-label="Raveoween"></h1>
       <p class="gate-sub">2nd Anniversary</p>
 
@@ -85,18 +83,16 @@
         <button class="btn-enter" id="enterSound" type="button">Enter Raveoween</button>
         <button class="btn-quiet" id="enterSilent" type="button">Enter without sound</button>
         <p class="enter-note">Oct 31 &nbsp;/&nbsp; 9PM &nbsp;/&nbsp; Headphones recommended</p>
-        <p class="ticket-warning">Be sure to read our house rules.<br><strong>Don't buy a ticket if this isn't your cup of tea.</strong></p>
       </div>
     </section>
 
-    <section class="halloween-teaser" aria-label="Halloween is coming">
-      <video class="halloween-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/r-spider.png">
+    <section class="halloween-teaser" id="halloween" aria-label="Halloween is coming">
+      <video class="halloween-video" autoplay muted loop playsinline preload="auto">
         <source src="assets/video/halloween-is-coming.mp4" type="video/mp4">
       </video>
       <div class="halloween-overlay"></div>
       <div class="halloween-copy">
-        <p>Our 2nd Anniversary is coming</p>
-        <span>October 31 / 9PM</span>
+        <a class="halloween-scroll" href="#experience">Scroll into the deep end ↓</a>
       </div>
     </section>
 
@@ -115,16 +111,20 @@
         <img class="exp-face" src="assets/img/face.png" alt="" width="830" height="680" loading="lazy" decoding="async">
         <div class="exp-copy">
           <p class="manifesto" id="manifesto">
-            <span class="sr">A Gathering Of The Alter Egos.</span>
-            <span class="mline" aria-hidden="true" data-words="A Gathering Of The"></span>
-            <span class="mline" aria-hidden="true" data-words="Alter Egos."></span>
+            <span class="sr">You are not entering a website, you are entering Raveoween. A Gathering Of The Alter Egos.</span>
+            <span class="mline intro-line" aria-hidden="true" data-words="You are not entering a website,"></span>
+            <span class="mline intro-line" aria-hidden="true" data-words="you are entering Raveoween."></span>
+            <span class="mline gathering-line" aria-hidden="true" data-words="A Gathering Of The Alter Egos."></span>
           </p>
-          <ul class="rules">
-            <li class="rule">Be who you wanna be.</li>
-            <li class="rule">Wear whatever the f**k you wanna wear.</li>
-            <li class="rule">No photos. No videos.</li>
-          </ul>
+          <div class="experience-bio">
+            <p>Underground Electronic Music Event</p>
+            <p>A TRULY INCLUSIVE SPACE</p>
+            <p>Be Whoever Or Whatever You Wanna Be</p>
+            <p>Just Keep It Positive And Pure</p>
+            <p>No Photos/Videos 📵</p>
+          </div>
         </div>
+        <div class="scroll-cue" aria-hidden="true"><span>↓</span> Keep scrolling <span>↓</span></div>
       </div>
     </section>
 
@@ -132,13 +132,13 @@
     <section class="ticket-rules" id="house-rules">
       <div class="ticket-panel rv">
         <p class="eyebrow">Before you enter</p>
-        <h2>Get your ticket.</h2>
-        <p>Raveoween is a gathering of the alter egos. Know what you're walking into before you buy.</p>
-        <a class="ticket ticket--compact" href="https://www.eventcove.africa/events/raveoweenanniversary" target="_blank" rel="noopener noreferrer">
-          <span class="ticket-text">Get tickets</span>
-        </a>
-        <a class="carpool-link" href="https://forms.gle/FagbsCa4zGRa94hB8" target="_blank" rel="noopener noreferrer">Need a ride? Join the carpool</a>
-        <p class="ticket-note">Be sure to read our house rules.<br><strong>Don't buy a ticket if this isn't your cup of tea.</strong></p>
+        <p class="ticket-intro">Be sure to read our house rules.</p>
+        <p class="ticket-note"><strong>Don't buy a ticket if this isn't your cup of tea.</strong></p>
+        <a class="ticket-heading" href="https://www.eventcove.africa/events/raveoweenanniversary" target="_blank" rel="noopener noreferrer"><h2>Get your tickets.</h2></a>
+        <div class="carpool-cta">
+          <p class="carpool-kicker">Need a ride?</p>
+          <a class="carpool-link" href="https://forms.gle/FagbsCa4zGRa94hB8" target="_blank" rel="noopener noreferrer">Join the carpool <span aria-hidden="true">→</span></a>
+        </div>
       </div>
 
       <div class="house-rules rv">
@@ -175,6 +175,12 @@
             <figcaption class="poster-name">Lollypop</figcaption>
           </figure>
         </div>
+        <div class="poster-wrap poster-wrap--c" data-speed="0.04">
+          <figure class="poster rv" id="p-delnoi">
+            <div class="poster-img"><img src="assets/img/del-noi.webp" alt="Del Noi. Raveoween 2nd Anniversary flyer." width="1638" height="2048" loading="lazy" decoding="async"></div>
+            <figcaption class="poster-name">Del Noi</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -189,17 +195,32 @@
 
         <div class="archive-copy">
           <p class="statement rv">The archive is empty.<br>On purpose.</p>
-          <p class="body rv">This space is meant to be felt, not filmed. Experience the music, the energy and the raw connection without a screen in the way. No photos or videos once you enter the venue. Cameras get stickered at the door, and anyone caught recording is removed.</p>
-
-          <!--
-            PREVIOUS EDITION PHOTOS
-            Add approved images to /assets/img/ and drop them in here, e.g.
-            <img class="archive-shot" src="assets/img/edition-01-a.webp" alt="Raveoween first edition" loading="lazy">
-          -->
+          <div class="feedback-card rv">
+            <p class="eyebrow">Still, we listen.</p>
+            <h3>Tell us how it felt.</h3>
+            <p>Leave feedback without adding your name or email. We keep the form focused on the experience.</p>
+            <form name="raveoween-feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="feedback-form">
+              <input type="hidden" name="form-name" value="raveoween-feedback">
+              <p class="hidden-field"><label>Don’t fill this out: <input name="bot-field"></label></p>
+              <label>How was your experience?
+                <select name="experience" required>
+                  <option value="" selected disabled>Select one</option>
+                  <option>Incredible</option>
+                  <option>Good</option>
+                  <option>Mixed</option>
+                  <option>Not good</option>
+                </select>
+              </label>
+              <label>What should we keep, change or improve?
+                <textarea name="feedback" rows="5" required placeholder="Tell us honestly."></textarea>
+              </label>
+              <button type="submit">Send anonymously</button>
+            </form>
+          </div>
 
           <ul class="links rv">
+            <li><a href="https://www.instagram.com/raveoweenexperience/" target="_blank" rel="noopener noreferrer">Check our Instagram highlights</a></li>
             <li><a href="https://x.com/raveoweenlagos/media" target="_blank" rel="noopener noreferrer">What was shared on X</a></li>
-            <li><a href="https://www.instagram.com/raveoweenexperience/" target="_blank" rel="noopener noreferrer">What was shared on Instagram</a></li>
           </ul>
         </div>
       </div>

@@ -23,7 +23,8 @@
     audio: {
       ambience: { src: 'assets/audio/ambience.mp3', loop: true, volume: 0.45 },
       thunder:  { src: 'assets/audio/thunder.mp3',  loop: false, volume: 0.8 },
-      laugh:    { src: 'assets/audio/laugh.mp3',    loop: false, volume: 0.7 }
+      laugh:    { src: 'assets/audio/laugh.mp3',    loop: false, volume: 0.7 },
+      wolf:     { src: 'https://www.orangefreesounds.com/wp-content/uploads/2014/10/Wolf-howl-sound.mp3', loop: false, volume: 0.55 }
     },
 
     // Random lightning while the site is open (ms between flashes)
@@ -56,10 +57,10 @@
     const count = $('#count');
     const msg = $('#msg');
     const lines = [
-      [0, 'Killing the lights'],
-      [30, 'Phones away'],
-      [62, 'Sharpening the grin'],
-      [92, 'Welcome to the dark']
+      [0, 'Welcome to the deep end'],
+      [30, 'Welcome to the deep end'],
+      [62, 'Welcome to the deep end'],
+      [92, 'Welcome to the deep end']
     ];
     const minMs = reduce ? 500 : 2800;
     const t0 = performance.now();
@@ -67,7 +68,7 @@
     let shown = 0;
     let lastMsg = '';
 
-    const files = ['title.png', 'face.png', 'funsyde.webp', 'lollypop.webp', 'flyer-anniversary.webp'];
+    const files = ['title.png', 'face.png', 'funsyde.webp', 'lollypop.webp', 'del-noi.webp', 'flyer-anniversary.webp', 'raveoween-original-logo.png'];
     const imgs = files.map(f => new Promise(res => {
       const i = new Image();
       i.onload = i.onerror = res;
@@ -221,7 +222,7 @@
     function fallback(name) {
       if (name === 'thunder') synthThunder(0.7);
       if (name === 'ambience') startDrone();
-      // laugh has no synthesized version: it simply stays silent if the file is missing
+      // laugh/wolf are local audio files; if either is missing, stay silent.
     }
 
     /* --- public --- */
@@ -241,7 +242,7 @@
       if (on) return;
       on = true; ui();
       // Unlock the one-shots inside this tap/click (needed on iOS Safari)
-      ['thunder', 'laugh'].forEach(n => {
+      ['thunder', 'laugh', 'wolf'].forEach(n => {
         const a = load(n);
         a.muted = true;
         a.play().then(() => { a.pause(); a.currentTime = 0; a.muted = false; })
@@ -256,7 +257,7 @@
       const a = els.ambience;
       if (a) { fade(a, 0, 500); setTimeout(() => { if (!on) a.pause(); }, 550); }
       if (drone) { drone.stop(); drone = null; }
-      ['thunder', 'laugh'].forEach(n => { if (els[n]) els[n].pause(); });
+      ['thunder', 'laugh', 'wolf'].forEach(n => { if (els[n]) els[n].pause(); });
     }
 
     function play(name) {
@@ -373,10 +374,11 @@
     if (withSound) Sound.enable();
     flash(0.35);
     if (withSound) Sound.play('thunder');
+    if (withSound) setTimeout(() => Sound.play('wolf'), 1500);
     body.classList.add('entered');
     root.classList.remove('locked');
     setTimeout(() => {
-      $('#experience').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+      $('#halloween').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
     }, 380);
     scheduleLightning();
   }
@@ -462,6 +464,37 @@
   }, { threshold: 0.15 });
   $$('.rv').forEach(el => io.observe(el.classList.contains('poster') ? el.parentElement : el));
 
+  // Netlify Forms: keep feedback on the page after an anonymous submission.
+  const feedbackForm = document.querySelector('form[name="raveoween-feedback"]');
+  if (feedbackForm) {
+    feedbackForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      const button = feedbackForm.querySelector('button[type="submit"]');
+      const original = button.textContent;
+      button.disabled = true;
+      button.textContent = 'Sending...';
+      try {
+        const data = new FormData(feedbackForm);
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(data).toString()
+        });
+        feedbackForm.innerHTML = '<p class="feedback-thanks">Thank you. Your feedback has been received.</p>';
+      } catch (err) {
+        button.disabled = false;
+        button.textContent = original;
+        const existing = feedbackForm.querySelector('.feedback-error');
+        if (!existing) {
+          const msg = document.createElement('p');
+          msg.className = 'feedback-error';
+          msg.textContent = 'Something went wrong. Please try again.';
+          feedbackForm.appendChild(msg);
+        }
+      }
+    });
+  }
+
   // Thunder when the ticket block first appears
   let ticketSeen = false;
   new IntersectionObserver((entries, obs) => {
@@ -542,7 +575,10 @@
       if (!document.hidden) {
         flash(0.16);
         setTimeout(() => flash(0.09), 220);
-        setTimeout(() => Sound.play('thunder'), rnd(500, 1400));
+        setTimeout(() => {
+          Sound.play('thunder');
+          if (Math.random() > 0.45) setTimeout(() => Sound.play('wolf'), rnd(900, 1800));
+        }, rnd(500, 1400));
       }
       scheduleLightning();
     }, rnd(CONFIG.lightning.min, CONFIG.lightning.max));

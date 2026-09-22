@@ -4,6 +4,8 @@ Drop your sound files in this folder using these names:
   thunder.mp3    plays when someone enters, at the tickets block, and on random lightning
   laugh.mp3      plays when the manifesto reaches the grin, and when the grin is clicked
 
+The wolf howl is loaded from the public-domain Orange Free Sounds source configured in script.js.
+
 Missing files are skipped. If ambience.mp3 or thunder.mp3 is missing, the site
 generates a simple drone and thunder itself, so the Sound button still works.
 laugh.mp3 stays silent until the file exists.

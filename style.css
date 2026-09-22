@@ -151,12 +151,13 @@ body.ready .glow { opacity: 1; }
 }
 body.ready .bar { opacity: 1; }
 .bar-mark {
-  width: clamp(110px, 16vw, 170px); aspect-ratio: 1210 / 290;
-  background: url(assets/img/title.png) center / contain no-repeat;
-  opacity: 0; transform: translateY(-6px);
+  width: clamp(120px, 17vw, 190px);
+  display: block;
+  opacity: 1;
+  transform: none;
   transition: opacity .4s, transform .4s;
 }
-.bar.mark .bar-mark { opacity: 1; transform: none; }
+.bar-mark img { width: 100%; height: auto; display: block; }
 .bar-right { display: flex; align-items: center; gap: clamp(1rem, 3vw, 2.2rem); margin-left: auto; }
 .bar-tickets {
   font-family: var(--display); font-size: 1.5rem; line-height: 1;
@@ -363,6 +364,13 @@ body.entered .countdown, body.entered .enter, body.entered .gate-02 { opacity: 1
 }
 .mline { display: block; }
 .mline + .mline { margin-top: .35em; }
+.intro-line { font-family: var(--type); font-size: clamp(.95rem, 2.6vw, 1.35rem); line-height: 1.45; letter-spacing: .03em; color: var(--bone); }
+.gathering-line { margin-top: .4em !important; font-size: clamp(4rem, 12vw, 10rem); line-height: .9; color: var(--bone); }
+.experience-bio { margin-top: clamp(1.5rem, 4vh, 3rem); color: var(--bone); font-size: clamp(.82rem, 1.7vw, 1rem); line-height: 1.5; text-shadow: 0 0 12px #000; }
+.experience-bio p + p { margin-top: .2rem; }
+.scroll-cue { position: absolute; left: 50%; bottom: clamp(1.25rem, 3vh, 2.5rem); z-index: 4; transform: translateX(-50%); color: var(--bone); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; opacity: calc(1 - var(--p) * 1.15); transition: color .2s, opacity .2s; text-shadow: 0 0 12px #000; border-block: 1px solid rgba(184,15,15,.7); padding: .6rem 1rem; background: rgba(0,0,0,.28); backdrop-filter: blur(2px); }
+.scroll-cue span { display: inline-block; margin-left: .4rem; color: var(--hot); animation: scrollCue 1.5s ease-in-out infinite; }
+@keyframes scrollCue { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
 .w {
   display: inline-block; margin-right: .22em;
   opacity: .1; transform: translateY(.12em);
@@ -400,7 +408,7 @@ body.entered .countdown, body.entered .enter, body.entered .gate-02 { opacity: 1
 
 .poster-grid {
   margin-top: clamp(2.5rem, 6vw, 5rem);
-  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.25rem, 5vw, 6rem);
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.25rem, 4vw, 4rem);
   align-items: start; max-width: 1200px; margin-inline: auto;
 }
 .poster-wrap { transform: translate3d(0, var(--py, 0px), 0); }
@@ -437,6 +445,17 @@ body.entered .countdown, body.entered .enter, body.entered .gate-02 { opacity: 1
   font-family: var(--display); font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: .95;
   color: var(--bone); margin-bottom: 1.5rem;
 }
+.feedback-card { margin-top: 2.5rem; padding: clamp(1.25rem, 3vw, 2rem); border: 1px solid var(--blood); background: rgba(3,3,3,.48); }
+.feedback-card h3 { margin-top: .35rem; font-family: var(--display); font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 400; color: var(--red); line-height: .95; }
+.feedback-card > p:not(.eyebrow) { margin-top: .7rem; max-width: 48ch; color: var(--ash); font-size: .9rem; }
+.feedback-form { margin-top: 1.5rem; display: grid; gap: 1rem; }
+.feedback-form label { display: grid; gap: .45rem; color: var(--bone); font-size: .78rem; }
+.feedback-form select, .feedback-form textarea { width: 100%; border: 1px solid var(--blood); border-radius: 0; background: #050505; color: var(--bone); padding: .8rem .9rem; font: inherit; }
+.feedback-form textarea { resize: vertical; min-height: 8rem; }
+.feedback-form button { justify-self: start; border: 1px solid var(--red); border-radius: 0; background: var(--red); color: var(--void); padding: .7rem 1rem; font-family: var(--display); font-size: 1.35rem; }
+.feedback-form button:hover { background: var(--hot); }
+.hidden-field { position: absolute !important; left: -9999px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
+
 .links { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .9rem 2rem; }
 .links a {
   font-family: var(--display); font-size: 1.6rem; text-decoration: none;
@@ -522,6 +541,7 @@ body.entered .countdown, body.entered .enter, body.entered .gate-02 { opacity: 1
 
 @media (max-width: 780px) {
   .poster-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .poster-wrap--c { grid-column: 1 / -1; width: min(72vw, 420px); margin-inline: auto; }
   .poster-wrap--b { margin-top: 3.5rem; }
   .poster-name { font-size: clamp(1.9rem, 9vw, 3rem); }
   .archive-grid, .info-grid { grid-template-columns: 1fr; }
@@ -555,34 +575,33 @@ body.entered .countdown, body.entered .enter, body.entered .gate-02 { opacity: 1
   .w, .rule { opacity: 1; transform: none; }
 }
 
-/* ---------- Stage 1 additions: spider, Halloween teaser, tickets + house rules ---------- */
-.spider-decor { position: absolute; pointer-events: none; user-select: none; z-index: 1; }
-.spider-decor--hero {
-  width: clamp(180px, 30vw, 420px); height: auto; right: -2vw; bottom: -8vh;
-  opacity: .72; filter: drop-shadow(0 0 30px rgba(184,15,15,.35));
-  transform: rotate(8deg); animation: spiderFloat 7s ease-in-out infinite;
-}
-@keyframes spiderFloat { 0%,100% { transform: translateY(0) rotate(8deg); } 50% { transform: translateY(-16px) rotate(5deg); } }
-.ticket-warning { margin-top: 1rem; max-width: 42ch; color: var(--ash); font-size: .78rem; line-height: 1.5; letter-spacing: .03em; }
-.ticket-warning strong { color: var(--hot); font-weight: 400; }
+/* ---------- Stage 1 additions: Halloween teaser, tickets + house rules ---------- */
 
-.halloween-teaser { position: relative; min-height: min(92vh, 900px); overflow: hidden; background: #000; display: grid; place-items: center; border-block: 1px solid var(--blood); }
-.halloween-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: .8; }
-.halloween-overlay { position: absolute; inset: 0; background: radial-gradient(circle at 50% 45%, transparent 5%, rgba(0,0,0,.25) 45%, rgba(0,0,0,.9) 100%), linear-gradient(to top, rgba(0,0,0,.92), transparent 50%); }
-.halloween-copy { position: relative; z-index: 2; text-align: center; padding: 2rem var(--pad); margin-top: 38vh; }
-.halloween-copy p { font-family: var(--display); color: var(--red); font-size: clamp(2.8rem, 8vw, 8rem); line-height: .9; text-shadow: 0 0 35px rgba(184,15,15,.35); }
-.halloween-copy span { display: block; margin-top: 1rem; color: var(--bone); letter-spacing: .12em; font-size: .8rem; text-transform: uppercase; }
+.halloween-teaser { position: relative; min-height: 100svh; overflow: hidden; background: #000; display: grid; place-items: center; border-block: 1px solid var(--blood); }
+.halloween-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; opacity: .92; background: #000; }
+.halloween-overlay { position: absolute; inset: 0; background: radial-gradient(circle at 50% 45%, transparent 8%, rgba(0,0,0,.12) 48%, rgba(0,0,0,.78) 100%), linear-gradient(to top, rgba(0,0,0,.95), transparent 42%); pointer-events: none; }
+.halloween-copy { position: absolute; z-index: 2; left: 0; right: 0; bottom: clamp(2rem, 7vh, 5rem); text-align: center; padding: 2rem var(--pad); pointer-events: none; }
+.halloween-scroll { display: inline-block; margin-top: 1.5rem; pointer-events: auto; color: var(--bone); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--blood); padding-bottom: .35rem; animation: scrollCue 1.5s ease-in-out infinite; }
+.halloween-scroll:hover { color: var(--hot); border-color: var(--hot); }
 
 .ticket-rules { padding: clamp(5rem, 12vw, 10rem) var(--pad); display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(2rem, 7vw, 7rem); align-items: start; background: linear-gradient(to bottom, rgba(60,4,4,.18), transparent 30%, rgba(60,4,4,.16)); }
 .ticket-panel { position: sticky; top: 7rem; padding: clamp(1.5rem, 3vw, 3rem); border: 1px solid var(--blood); background: rgba(3,3,3,.72); box-shadow: 0 0 80px rgba(184,15,15,.08); }
 .eyebrow { color: var(--ash); text-transform: uppercase; letter-spacing: .16em; font-size: .72rem; }
 .ticket-panel h2, .house-rules-heading h2 { font-family: var(--display); font-weight: 400; color: var(--red); line-height: .9; }
-.ticket-panel h2 { font-size: clamp(3rem, 6vw, 6rem); margin: .5rem 0 1rem; }
+.ticket-heading { display: flex; min-height: clamp(190px, 24vw, 320px); margin-top: clamp(2rem, 4vw, 3rem); align-items: center; justify-content: center; text-align: center; text-decoration: none; border: 1px solid var(--blood); background: radial-gradient(circle at 50% 45%, rgba(184,15,15,.9), rgba(90,4,4,.78) 55%, rgba(3,3,3,.96) 100%); box-shadow: inset 0 0 70px rgba(0,0,0,.3), 0 0 50px rgba(184,15,15,.08); transition: transform .25s ease, border-color .25s ease, filter .25s ease; }
+.ticket-heading:hover { border-color: var(--hot); transform: translateY(-2px); filter: brightness(1.08); }
+.ticket-heading h2 { color: #170303; text-shadow: 0 1px 0 rgba(255,255,255,.05); }
+.ticket-panel h2 { font-size: clamp(3.4rem, 7vw, 6.5rem); margin: 0; line-height: .84; }
 .ticket-panel > p:not(.eyebrow):not(.ticket-note) { color: var(--bone); max-width: 34ch; }
+.ticket-intro { margin-top: 1rem; font-size: clamp(1rem, 1.7vw, 1.2rem); line-height: 1.5; }
 .ticket--compact { margin-top: 2rem; border-block: 1px solid var(--red); }
 .ticket--compact .ticket-text { font-size: clamp(3.2rem, 8vw, 7rem); }
-.carpool-link { display: block; margin-top: 1rem; color: var(--bone); font-family: var(--display); font-size: 1.5rem; text-decoration: none; border-bottom: 1px solid var(--blood); width: fit-content; }
+.carpool-cta { margin-top: clamp(2rem, 4vw, 3.5rem); padding-top: clamp(1.25rem, 2vw, 1.75rem); border-top: 1px solid var(--blood); }
+.carpool-kicker { margin: 0 0 .45rem; color: var(--ash); text-transform: uppercase; letter-spacing: .14em; font-size: .68rem; }
+.carpool-link { display: inline-flex; align-items: center; gap: .6rem; color: var(--bone); font-family: var(--display); font-size: clamp(1.5rem, 2.6vw, 2.35rem); line-height: 1; text-decoration: none; border-bottom: 1px solid var(--blood); padding-bottom: .35rem; width: fit-content; }
+.carpool-link span { color: var(--hot); transition: transform .2s ease; }
 .carpool-link:hover { color: var(--hot); border-color: var(--hot); }
+.carpool-link:hover span { transform: translateX(4px); }
 .ticket-note { margin-top: 1.5rem; color: var(--ash); font-size: .85rem; line-height: 1.5; }
 .ticket-note strong { color: var(--hot); font-weight: 400; }
 .house-rules-heading { margin-bottom: 2rem; }
@@ -594,11 +613,19 @@ body.entered .countdown, body.entered .enter, body.entered .gate-02 { opacity: 1
 .house-rules-list p { max-width: 65ch; color: var(--ash); font-size: .9rem; line-height: 1.65; }
 
 @media (max-width: 780px) {
-  .spider-decor--hero { width: 180px; right: -34px; bottom: -35px; opacity: .55; }
-  .halloween-teaser { min-height: 70svh; }
-  .halloween-copy { margin-top: 28vh; }
-  .halloween-copy p { font-size: clamp(2.4rem, 11vw, 4.5rem); }
+  .halloween-teaser { min-height: 100svh; }
+  .halloween-copy { bottom: 1.5rem; }
+  .gathering-line { font-size: clamp(3.2rem, 15vw, 6rem); }
+  .experience-bio { font-size: .78rem; }
+  .scroll-cue { bottom: 1rem; }
+  .carpool-link { font-size: clamp(1.5rem, 7vw, 2.4rem); }
+  .carpool-cta { margin-top: 2rem; }
+  .feedback-form button { width: 100%; }
   .ticket-rules { grid-template-columns: 1fr; gap: 4rem; padding-top: 5rem; }
   .ticket-panel { position: relative; top: auto; }
   .house-rules-list p { font-size: .82rem; }
 }
+
+.feedback-thanks { color: var(--bone); font-family: var(--display); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1; }
+.feedback-error { color: var(--hot); font-size: .8rem; }
+.feedback-form button:disabled { opacity: .6; cursor: wait; }
