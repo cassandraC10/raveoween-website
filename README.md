@@ -10,19 +10,21 @@ Static vanilla HTML/CSS/JS landing page for the Raveoween 2nd Anniversary.
 ## Current updates
 - Uses the supplied original Raveoween logo in the fixed top-left bar.
 - Loader copy now reads “Welcome to the deep end” throughout the sequence.
-- Removed the spider artwork.
+- Kept spider graphics out of the experience effects; the supplied anniversary spider artwork is used for the final event image near the footer.
 - Entering Raveoween now lands on the Halloween video instead of skipping it.
 - Halloween video uses `object-fit: contain` so the full portrait video remains visible.
 - Added a clear scroll cue through the experience.
 - Added the requested Raveoween Instagram bio copy to the Alter Egos section.
 - Removed the repeated ticket CTA from the house-rules panel and made “Get your ticket” link directly to EventCove.
 - Added the carpool CTA as the next major action.
-- Added Del Noi to the Artists / DJs section using the supplied artwork.
+- Added Del Noi, K.N.O, Momentum, and BANZ to the Artists / DJs section using the supplied artwork.
 - Added a no-name/no-email feedback form to the archive section using Netlify Forms.
 - Added a supplied-style wolf howl as a local audio asset.
 
 ## Feedback form
 The feedback form uses Netlify Forms. Enable **Forms → Form detection** in Netlify, then deploy the branch. Submissions appear in the site's Forms area.
+
+- Replaced the event flyer near the footer with the supplied red spider anniversary artwork.
 
 ## Latest staging corrections
 - Halloween teaser uses the video artwork as the single source for the anniversary/date message to avoid duplicated text.
@@ -32,3 +34,9 @@ The feedback form uses Netlify Forms. Enable **Forms → Form detection** in Net
 
 
 Audio source note: the wolf howl uses the public-domain Wolf Howl Sound from Orange Free Sounds (https://www.orangefreesounds.com/wolf-howl-sound/). The page states the sound may be used commercially without prior permission.
+
+
+## Link preview / icon
+- Browser favicon and social preview use the Raveoween logo in `assets/img/logo.png`.
+- The larger `assets/img/raveoween-preview.png` is used for WhatsApp/X/other link previews.
+- Preview services may cache an older image; re-sharing after the new deployment may be required.

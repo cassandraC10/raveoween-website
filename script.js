@@ -68,7 +68,7 @@
     let shown = 0;
     let lastMsg = '';
 
-    const files = ['title.png', 'face.png', 'funsyde.webp', 'lollypop.webp', 'del-noi.webp', 'flyer-anniversary.webp', 'raveoween-original-logo.png'];
+    const files = ['title.png', 'face.png', 'funsyde.webp', 'lollypop.webp', 'del-noi.webp', 'banz-raveoween.jpeg', 'r-spider.png', 'raveoween-original-logo.png'];
     const imgs = files.map(f => new Promise(res => {
       const i = new Image();
       i.onload = i.onerror = res;
