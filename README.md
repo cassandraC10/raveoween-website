@@ -17,7 +17,7 @@ Static vanilla HTML/CSS/JS landing page for the Raveoween 2nd Anniversary.
 - Added the requested Raveoween Instagram bio copy to the Alter Egos section.
 - Removed the repeated ticket CTA from the house-rules panel and made “Get your ticket” link directly to EventCove.
 - Added the carpool CTA as the next major action.
-- Added Del Noi, K.N.O, Momentum, and BANZ to the Artists / DJs section using the supplied artwork.
+- Added Del Noi, KND, Momentum, and BANZ to the Artists / DJs section using the supplied artwork.
 - Added a no-name/no-email feedback form to the archive section using Netlify Forms.
 - Added a supplied-style wolf howl as a local audio asset.
 
