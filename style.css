@@ -486,6 +486,17 @@ body.entered .countdown, body.entered .enter, body.entered .gate-02 { opacity: 1
 .facts a { color: var(--hot); text-underline-offset: 4px; }
 .flyer-wrap { transform: translate3d(0, var(--py, 0px), 0); }
 .flyer { width: 100%; max-width: 420px; margin-inline: auto; border: 1px solid var(--blood); box-shadow: 0 0 80px rgba(184, 15, 15, .22); }
+.next-event { min-width: 0; max-width: 420px; margin-inline: auto; align-self: stretch; }
+.next-event-poster { display: block; border: 1px solid var(--blood); box-shadow: 0 0 80px rgba(184, 15, 15, .22); overflow: hidden; }
+.next-event-poster img { width: 100%; height: auto; transition: transform .35s ease, filter .35s ease; }
+.next-event-poster:hover img { transform: scale(1.025); filter: brightness(1.08); }
+.next-event-copy { padding-top: 1.2rem; }
+.next-event-copy .eyebrow { color: var(--hot); font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 .65rem; }
+.next-event-copy h3 { color: var(--bone); font-family: var(--display); font-size: clamp(2rem, 3vw, 3rem); line-height: .95; margin: 0 0 .8rem; }
+.next-event-date { color: var(--hot); font-family: var(--display); font-size: clamp(1.25rem, 2vw, 1.7rem); margin: 0 0 .8rem; }
+.next-event-copy p:not(.eyebrow):not(.next-event-date) { color: var(--ash); line-height: 1.5; margin: .4rem 0; }
+.next-event-link { display: inline-flex; gap: .55rem; align-items: center; margin-top: 1rem; color: var(--hot); font-family: var(--display); font-size: 1.3rem; text-decoration: none; border-bottom: 1px solid var(--blood); padding-bottom: .3rem; }
+.next-event-link:hover { color: var(--bone); border-color: var(--hot); }
 
 /* ---------- 7. tickets ---------- */
 
@@ -550,6 +561,7 @@ body.entered .countdown, body.entered .enter, body.entered .gate-02 { opacity: 1
   .poster-wrap--f { grid-column: 1 / -1; width: min(72vw, 420px); margin-inline: auto; }
   .poster-name { font-size: clamp(1.9rem, 9vw, 3rem); }
   .archive-grid, .info-grid { grid-template-columns: 1fr; }
+  .next-event { width: min(100%, 420px); }
   .nophoto img { max-width: 300px; }
   .flyer { max-width: 320px; }
   .exp { height: 260vh; }

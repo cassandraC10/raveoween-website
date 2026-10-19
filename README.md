@@ -40,3 +40,9 @@ Audio source note: the wolf howl uses the public-domain Wolf Howl Sound from Ora
 - Browser favicon and social preview use the Raveoween logo in `assets/img/logo.png`.
 - The larger `assets/img/raveoween-preview.png` is used for WhatsApp/X/other link previews.
 - Preview services may cache an older image; re-sharing after the new deployment may be required.
+
+
+## Next gathering update
+- Added Blind Rave II beside the anniversary spider flyer in the event information section.
+- Poster and event details link to https://www.eventcove.africa/events/blindrave2.
+- Event information follows the supplied poster: December 5, 10PM; no line up; no set times.
