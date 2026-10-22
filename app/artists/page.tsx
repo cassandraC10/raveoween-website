@@ -32,7 +32,7 @@ export default function ArtistsPage() {
               <Reveal as="li" key={a.slug}>
                 <figure className="card"><div className="frame"><Image src={a.image} alt={a.alt} width={a.w} height={a.h} loading="lazy" /></div>
                   <figcaption className="mt-3"><span className="font-display text-3xl">{a.name}</span>
-                    <span className="mt-1 flex flex-wrap gap-1.5">{eds.map((id) => <Link key={id} href={`/editions#ed-${id}`} className="chip hover:border-hot">{id}</Link>)}</span></figcaption></figure>
+                    <span className="mt-1 flex flex-wrap gap-1.5">{eds.map((id) => <Link key={id} href={`/editions#ed-${id}`} className="chip hover:border-hot">{editions.find((e) => e.id === id)?.roman ?? id}</Link>)}</span></figcaption></figure>
               </Reveal>
             );
           })}
@@ -44,7 +44,7 @@ export default function ArtistsPage() {
           {others.map((a) => (
             <li key={a.name} className="flex flex-wrap items-baseline justify-between gap-2 border-b border-blood pb-3">
               <span className="font-display text-2xl">{a.name}</span>
-              <span className="flex gap-1.5">{a.eds.map((id) => <Link key={id} href={`/editions#ed-${id}`} className="chip hover:border-hot">{id}</Link>)}</span>
+              <span className="flex gap-1.5">{a.eds.map((id) => <Link key={id} href={`/editions#ed-${id}`} className="chip hover:border-hot">{editions.find((e) => e.id === id)?.roman ?? id}</Link>)}</span>
             </li>
           ))}
         </ul>

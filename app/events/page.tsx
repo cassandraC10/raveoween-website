@@ -26,7 +26,7 @@ export default function EventsPage() {
                 <Reveal as="li" key={e.id} className="grid items-center gap-8 md:grid-cols-[minmax(0,380px)_1fr] md:gap-14">
                   {f && <Link href={`/events/${e.eventSlug}`} className="frame-btn" aria-label={`${displayTitle(e)} event page`}><span className="frame block"><Image src={f.src} alt={flyerAlt(e)} width={f.w} height={f.h} priority={e.number === 19} sizes="(min-width:768px) 380px, 92vw" /></span></Link>}
                   <div className="flex flex-col gap-3">
-                    <div className="flex items-center gap-3"><span className="eyebrow">{e.id} · Edition {e.roman}</span><span className="tag up">Upcoming</span></div>
+                    <div className="flex items-center gap-3"><span className="eyebrow">{e.roman}</span><span className="tag up">Upcoming</span></div>
                     <h2 className="h2">{displayTitle(e)}</h2>
                     {e.subtitle && e.title !== 'Raveoween' && <p className="font-display text-3xl">{e.subtitle}</p>}
                     <p className="font-display text-4xl text-hot">{e.dateLabel} · {e.time}</p>

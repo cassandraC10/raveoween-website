@@ -38,7 +38,7 @@ export default function Home() {
               <Reveal as="li" key={e.id} className="grid gap-6 sm:grid-cols-[220px_1fr] md:grid-cols-1 lg:grid-cols-[240px_1fr]">
                 {f && <Link href={`/events/${e.eventSlug}`} className="frame-btn" aria-label={`${displayTitle(e)} event page`}><span className="frame block"><Image src={f.thumb} alt={flyerAlt(e)} width={f.tw} height={f.th} loading="lazy" /></span></Link>}
                 <div className="flex flex-col gap-3">
-                  <p className="eyebrow">Edition {e.roman}</p>
+                  <p className="eyebrow">{e.roman}</p>
                   <h3 className="font-display text-5xl leading-none">{displayTitle(e)}</h3>
                   <p className="font-display text-3xl text-hot">{e.dateLabel} · {e.time}</p>
                   <p className="text-ash">{x.blurb[0]}</p>
@@ -57,12 +57,12 @@ export default function Home() {
 
       <section className="py-24 md:py-36" aria-labelledby="ed-h">
         <div className="px-pad"><Reveal><h2 id="ed-h" className="h2">Twenty<span> / editions</span></h2>
-          <p className="lead mt-5">From Edition I to Edition XX. Every flyer, in order.</p></Reveal></div>
+          <p className="lead mt-5">From I to XX. Every flyer, in order.</p></Reveal></div>
         <div className="mt-10 overflow-x-auto px-pad pb-4" tabIndex={0} role="region" aria-label="Edition flyers, scroll horizontally">
           <ul className="flex w-max gap-4">
             {withFlyers.map((e) => { const f = flyerOf(e.flyer)!; return (
               <li key={e.id} className="w-40 shrink-0 sm:w-52">
-                <Link href={`/editions#ed-${e.id}`} className="frame-btn"><span className="frame block"><Image src={f.thumb} alt={flyerAlt(e)} width={f.tw} height={f.th} loading="lazy" /></span><span className="mt-2 block text-sm text-ash">{e.id}</span></Link>
+                <Link href={`/editions#ed-${e.id}`} className="frame-btn"><span className="frame block"><Image src={f.thumb} alt={flyerAlt(e)} width={f.tw} height={f.th} loading="lazy" /></span><span className="mt-2 block text-sm text-ash">{e.roman}</span></Link>
               </li>); })}
           </ul>
         </div>

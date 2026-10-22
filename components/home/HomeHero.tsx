@@ -47,7 +47,7 @@ export function HomeHero({ startsAt, eventLabel, eventHref }: { startsAt: string
         <button type="button" className="btn-enter" onClick={() => go(true)}>Enter Raveoween</button>
         <button type="button" className="btn-quiet" onClick={() => go(false)}>Enter without sound</button>
         <p className="enter-note">
-          Oct 31 &nbsp;/&nbsp; 9PM &nbsp;/&nbsp; Headphones recommended &nbsp;/&nbsp; <a className="underline" href={eventHref}>Event details</a>
+          Oct 31 &nbsp;/&nbsp; 9PM &nbsp;/&nbsp; <a className="underline" href={eventHref}>Event details</a>
         </p>
       </div>
     </section>

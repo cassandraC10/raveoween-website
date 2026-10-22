@@ -33,7 +33,7 @@ export function SiteHeader() {
         </nav>
         <div className="flex items-center gap-3">
           <SoundToggle />
-          <button ref={btn} type="button" className="sound lg:hidden!" aria-expanded={open} aria-controls="menu" onClick={() => setOpen((o) => !o)}>
+          <button ref={btn} type="button" className="mobile-menu-btn lg:hidden" aria-expanded={open} aria-controls="menu" onClick={() => setOpen((o) => !o)}>
             {open ? 'Close' : 'Menu'}
           </button>
         </div>

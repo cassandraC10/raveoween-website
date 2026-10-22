@@ -29,8 +29,8 @@ export default function ArchivePage() {
           <Reveal><h2 id={`y-${y}`} className="h2">{y}</h2></Reveal>
           <ul className="mt-10 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5">
             {past.filter((e) => e.dateISO!.startsWith(y)).flatMap((e) => {
-              const out = [{ key: e.id, file: e.flyer!, cap: `${e.id} · Edition ${e.roman} · ${displayTitle(e)}`, alt: flyerAlt(e), sub: `${e.id} · ${e.dateLabel}` }];
-              e.altFlyers?.forEach((a) => out.push({ key: a.file, file: a.file, cap: `${e.id} · ${a.label}`, alt: `${a.label}, Edition ${e.roman}`, sub: `${e.id} · alternate` }));
+              const out = [{ key: e.id, file: e.flyer!, cap: `${e.roman} · ${displayTitle(e)}`, alt: flyerAlt(e), sub: `${e.roman} · ${e.dateLabel}` }];
+              e.altFlyers?.forEach((a) => out.push({ key: a.file, file: a.file, cap: `${e.roman} · ${a.label}`, alt: `${a.label}, Edition ${e.roman}`, sub: `${e.roman} · alternate` }));
               return out;
             }).map((it) => { const f = flyerOf(it.file)!; return (
               <Reveal as="li" key={it.key}><FlyerButton flyer={f} alt={it.alt} caption={it.cap} /><p className="mt-2 text-sm text-ash">{it.sub}</p></Reveal>

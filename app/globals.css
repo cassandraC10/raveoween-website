@@ -247,3 +247,117 @@ dialog.lightbox::backdrop { background: rgba(0,0,0,.88); }
   .cd b.tick { animation: none !important; }
 }
 @media (hover: none), (max-width: 760px) { .grain { opacity: .08; animation-duration: 1.4s; } .glow { display: none; } }
+
+
+/* ---------- mobile navigation emphasis ---------- */
+.mobile-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.8rem;
+  padding: .55rem 1rem;
+  border: 1px solid var(--red);
+  background: rgba(3, 3, 3, .88);
+  color: var(--bone);
+  font-weight: 700;
+  font-size: .82rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  box-shadow: none;
+}
+.mobile-menu-btn:hover,
+.mobile-menu-btn:focus-visible { background: var(--red); border-color: var(--hot); color: var(--bone); }
+
+/* ---------- 21+ ticket confirmation ---------- */
+.ticket-gate-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  padding: max(1rem, env(safe-area-inset-top)) 1rem max(1rem, env(safe-area-inset-bottom));
+  background: rgba(0, 0, 0, .88);
+  backdrop-filter: blur(8px);
+}
+.ticket-gate {
+  position: relative;
+  width: min(100%, 34rem);
+  max-height: calc(100svh - 2rem);
+  overflow-y: auto;
+  padding: clamp(1.4rem, 5vw, 2.5rem);
+  border: 1px solid var(--red);
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(184, 15, 15, .2), transparent 60%),
+    #080707;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, .7);
+}
+.ticket-gate-close {
+  position: absolute;
+  top: .65rem;
+  right: .75rem;
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border: 1px solid var(--blood);
+  background: transparent;
+  color: var(--bone);
+  font-size: 1.7rem;
+  line-height: 1;
+}
+.ticket-gate-title {
+  max-width: 15ch;
+  margin-top: .75rem;
+  color: var(--bone);
+  font-family: 'Pirata One', serif;
+  font-size: clamp(2rem, 7vw, 3.2rem);
+  line-height: 1.05;
+}
+.ticket-gate-copy {
+  margin-top: 1rem;
+  color: var(--hot);
+  font-family: 'Special Elite', monospace;
+}
+.ticket-gate-rules { margin-top: 1rem; color: var(--ash); font-size: .9rem; }
+.ticket-gate-rules a { color: var(--bone); text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: .2em; }
+.ticket-gate-check {
+  display: flex;
+  align-items: flex-start;
+  gap: .8rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid rgba(184, 15, 15, .65);
+  color: var(--bone);
+  line-height: 1.45;
+  cursor: pointer;
+}
+.ticket-gate-check input {
+  flex: 0 0 auto;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: .12rem;
+  accent-color: var(--red);
+}
+.ticket-gate-continue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 3.5rem;
+  margin-top: 1rem;
+  padding: .9rem 1rem;
+  border: 2px solid var(--red);
+  color: var(--bone);
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Pirata One', serif;
+  font-size: 1.5rem;
+  transition: background .2s, color .2s, opacity .2s;
+}
+.ticket-gate-continue[aria-disabled='true'] { cursor: not-allowed; opacity: .42; }
+.ticket-gate-continue.is-ready { background: var(--red); opacity: 1; }
+.ticket-gate-continue.is-ready:hover { background: var(--hot); color: var(--void); }
+.ticket-gate-footnote { margin-top: .75rem; color: var(--ash); font-size: .78rem; text-align: center; }
+
+.ticket:where(button) { width: 100%; background: transparent; border-inline: 0; cursor: pointer; }

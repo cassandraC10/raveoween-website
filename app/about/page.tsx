@@ -43,7 +43,7 @@ export default function AboutPage() {
       <section className="border-t border-blood px-pad py-20" aria-labelledby="line-h">
         <h2 id="line-h" className="h2">Timeline</h2>
         <dl className="facts mt-10 max-w-3xl">
-          {milestones.map((m) => <div key={m.id}><dt>{m.id} · Edition {m.roman}</dt><dd className="small">{m.subtitle ?? 'First edition'} · {m.dateLabel}</dd></div>)}
+          {milestones.map((m) => <div key={m.id}><dt>{m.roman}</dt><dd className="small">{m.subtitle ?? 'First edition'} · {m.dateLabel}</dd></div>)}
           <div><dt>Series so far</dt><dd className="small">{past} past · {next} upcoming · {editions.length} total</dd></div>
         </dl>
         <div className="mt-10 flex flex-wrap gap-8"><Link href="/editions" className="link-arrow">All editions <span aria-hidden="true">→</span></Link><Link href="/events" className="link-arrow">What&apos;s next <span aria-hidden="true">→</span></Link><Link href="/community" className="link-arrow">Community <span aria-hidden="true">→</span></Link></div>

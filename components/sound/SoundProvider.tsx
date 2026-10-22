@@ -1,4 +1,5 @@
 'use client';
+
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
 type SoundApi = { enabled: boolean; enable: (opts?: { howl?: boolean }) => Promise<void>; disable: () => void; toggle: () => void };
@@ -9,77 +10,156 @@ export const useSound = () => {
   return c;
 };
 
-/**
- * Sound is opt-in only (never autoplays). Everything is generated or local:
- * a quiet drone, synthesised thunder with a lightning flash, and the supplied wolf-howl.wav.
- * Dispatches `rv:flash` so <Atmosphere /> can light up the screen.
- */
+const WOLF_SOURCE = 'https://www.orangefreesounds.com/wp-content/uploads/2014/10/Wolf-howl-sound.mp3';
+
+/** Sound behavior follows the production gate: low ambience, a thunder hit on entry, then the wolf howl. */
 export function SoundProvider({ children }: { children: React.ReactNode }) {
   const [enabled, setEnabled] = useState(false);
   const ctx = useRef<AudioContext | null>(null);
   const master = useRef<GainNode | null>(null);
-  const drone = useRef<OscillatorNode[]>([]);
-  const howlBuf = useRef<AudioBuffer | null>(null);
-  const bolt = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const droneNodes = useRef<AudioNode[]>([]);
+  const wolf = useRef<HTMLAudioElement | null>(null);
+  const howlTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lightningTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const thunder = useCallback(() => {
-    const c = ctx.current, m = master.current;
-    if (!c || !m) return;
-    const len = c.sampleRate * 3;
-    const buf = c.createBuffer(1, len, c.sampleRate);
-    const d = buf.getChannelData(0);
-    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.2);
-    const src = c.createBufferSource(); src.buffer = buf;
-    const lp = c.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 180;
-    const g = c.createGain(); g.gain.value = 1.6;
-    src.connect(lp).connect(g).connect(m); src.start();
-    window.dispatchEvent(new Event('rv:flash'));
+  const ensureAudio = useCallback(() => {
+    if (ctx.current) return ctx.current;
+    const AC = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    const audio = new AC();
+    const gain = audio.createGain();
+    gain.gain.value = 1;
+    gain.connect(audio.destination);
+    ctx.current = audio;
+    master.current = gain;
+    return audio;
   }, []);
 
-  const scheduleBolt = useCallback(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    bolt.current = setTimeout(() => { thunder(); scheduleBolt(); }, 22000 + Math.random() * 26000);
-  }, [thunder]);
+  const startDrone = useCallback(() => {
+    const audio = ensureAudio();
+    if (droneNodes.current.length) return;
+    const t = audio.currentTime;
+    const out = audio.createGain();
+    out.gain.setValueAtTime(0, t);
+    out.gain.linearRampToValueAtTime(0.5, t + 3);
+    out.connect(master.current!);
+    const lp = audio.createBiquadFilter();
+    lp.type = 'lowpass';
+    lp.frequency.value = 160;
+    lp.Q.value = 6;
+    lp.connect(out);
+    const nodes: AudioNode[] = [out, lp];
+    [[55, 'sawtooth', 0.09], [55.6, 'sawtooth', 0.09], [82.4, 'triangle', 0.05]].forEach(([freq, type, volume]) => {
+      const osc = audio.createOscillator();
+      const gain = audio.createGain();
+      osc.type = type as OscillatorType;
+      osc.frequency.value = Number(freq);
+      gain.gain.value = Number(volume);
+      osc.connect(gain).connect(lp);
+      osc.start();
+      nodes.push(osc, gain);
+    });
+    droneNodes.current = nodes;
+  }, [ensureAudio]);
+
+  const playThunder = useCallback(() => {
+    const audio = ensureAudio();
+    const t = audio.currentTime;
+    const len = Math.ceil(audio.sampleRate * 2);
+    const buffer = audio.createBuffer(1, len, audio.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+    const source = audio.createBufferSource();
+    source.buffer = buffer;
+    const filter = audio.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(1800, t);
+    filter.frequency.exponentialRampToValueAtTime(90, t + 3.5);
+    const gain = audio.createGain();
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.linearRampToValueAtTime(0.7, t + 0.04);
+    gain.gain.exponentialRampToValueAtTime(0.21, t + 0.7);
+    gain.gain.linearRampToValueAtTime(0.42, t + 1.1);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 4.2);
+    source.connect(filter).connect(gain).connect(master.current!);
+    source.start(t);
+    source.stop(t + 4.5);
+    window.dispatchEvent(new Event('rv:flash'));
+  }, [ensureAudio]);
+
+  const playWolf = useCallback(() => {
+    if (!wolf.current) {
+      const audio = new Audio(WOLF_SOURCE);
+      audio.preload = 'auto';
+      audio.volume = 0.55;
+      wolf.current = audio;
+    }
+    wolf.current.currentTime = 0;
+    void wolf.current.play().catch(() => {
+      // Sound remains optional; a blocked or unavailable external sound must not break the site.
+    });
+  }, []);
+
+  const scheduleLightning = useCallback(() => {
+    if (lightningTimer.current) clearTimeout(lightningTimer.current);
+    if (!enabled || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    lightningTimer.current = setTimeout(() => {
+      if (document.hidden || !enabled) {
+        scheduleLightning();
+        return;
+      }
+      playThunder();
+      if (Math.random() > 0.45) setTimeout(() => { if (enabled) playWolf(); }, 900 + Math.random() * 900);
+      scheduleLightning();
+    }, 22000 + Math.random() * 26000);
+  }, [enabled, playThunder, playWolf]);
 
   const enable = useCallback(async (opts?: { howl?: boolean }) => {
     try {
-      if (!ctx.current) {
-        const AC = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-        const c = new AC(); const m = c.createGain(); m.gain.value = 0; m.connect(c.destination);
-        const lp = c.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 220; lp.connect(m);
-        drone.current = [55, 55.4, 82.4].map((f, i) => {
-          const o = c.createOscillator(); o.type = i === 2 ? 'sine' : 'sawtooth'; o.frequency.value = f;
-          const g = c.createGain(); g.gain.value = 0.35; o.connect(g).connect(lp); o.start(); return o;
-        });
-        ctx.current = c; master.current = m;
-      }
-      const c = ctx.current, m = master.current!;
-      await c.resume();
-      m.gain.cancelScheduledValues(c.currentTime);
-      m.gain.linearRampToValueAtTime(0.32, c.currentTime + 1.5);
+      const audio = ensureAudio();
+      await audio.resume();
+      startDrone();
       setEnabled(true);
-      scheduleBolt();
       if (opts?.howl) {
-        if (!howlBuf.current) {
-          const res = await fetch('/audio/wolf-howl.wav');
-          howlBuf.current = await c.decodeAudioData(await res.arrayBuffer());
-        }
-        const src = c.createBufferSource(); src.buffer = howlBuf.current;
-        const g = c.createGain(); g.gain.value = 0.55;
-        src.connect(g).connect(c.destination); src.start();
+        playThunder();
+        if (howlTimer.current) clearTimeout(howlTimer.current);
+        howlTimer.current = setTimeout(playWolf, 1500);
       }
-    } catch { setEnabled(false); }
-  }, [scheduleBolt]);
+    } catch {
+      setEnabled(false);
+    }
+  }, [ensureAudio, playWolf, playThunder, startDrone]);
 
   const disable = useCallback(() => {
-    const c = ctx.current, m = master.current;
-    if (bolt.current) clearTimeout(bolt.current);
-    if (c && m) { m.gain.cancelScheduledValues(c.currentTime); m.gain.linearRampToValueAtTime(0, c.currentTime + 0.4); setTimeout(() => c.suspend(), 450); }
+    if (howlTimer.current) clearTimeout(howlTimer.current);
+    if (lightningTimer.current) clearTimeout(lightningTimer.current);
+    if (wolf.current) wolf.current.pause();
+    const audio = ctx.current;
+    if (audio) void audio.suspend();
+    droneNodes.current.forEach((node) => {
+      if (node instanceof OscillatorNode) {
+        try { node.stop(); } catch { /* already stopped */ }
+      }
+    });
+    droneNodes.current = [];
     setEnabled(false);
   }, []);
 
   const toggle = useCallback(() => (enabled ? disable() : void enable()), [enabled, enable, disable]);
-  useEffect(() => () => { if (bolt.current) clearTimeout(bolt.current); drone.current.forEach((o) => o.stop()); ctx.current?.close(); }, []);
+
+  useEffect(() => {
+    scheduleLightning();
+  }, [scheduleLightning]);
+
+  useEffect(() => () => {
+    if (howlTimer.current) clearTimeout(howlTimer.current);
+    if (lightningTimer.current) clearTimeout(lightningTimer.current);
+    droneNodes.current.forEach((node) => {
+      if (node instanceof OscillatorNode) {
+        try { node.stop(); } catch { /* already stopped */ }
+      }
+    });
+    void ctx.current?.close();
+  }, []);
 
   const value = useMemo(() => ({ enabled, enable, disable, toggle }), [enabled, enable, disable, toggle]);
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

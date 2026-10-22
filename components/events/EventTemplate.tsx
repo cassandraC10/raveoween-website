@@ -36,7 +36,7 @@ export function EventTemplate({ e }: { e: Edition }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <header className="grid gap-10 px-pad pb-16 pt-36 md:grid-cols-[1.1fr_.9fr] md:items-start md:pt-44">
         <div>
-          <p className="eyebrow">{e.id} · Edition {e.roman}</p>
+          <p className="eyebrow">{e.roman}</p>
           <h1 className="h1 mt-3">{title}</h1>
           {e.subtitle && <p className="mt-3 font-display text-3xl text-bone">{e.subtitle}</p>}
           <p className="mt-5 font-display text-[clamp(1.8rem,5vw,3rem)] text-hot">{e.dateLabel} · {e.time}</p>
@@ -66,7 +66,7 @@ export function EventTemplate({ e }: { e: Edition }) {
           <div><dt>Date</dt><dd>{e.dateLabel}</dd></div>
           <div><dt>Time</dt><dd>{e.time}</dd></div>
           <div><dt>Location</dt><dd className="small">{x.locationStatus}</dd></div>
-          <div><dt>Tickets</dt><dd className="small"><a href={x.ticketUrl} target="_blank" rel="noopener noreferrer">EventCove</a></dd></div>
+          <div><dt>Tickets</dt><dd className="small"><TicketLink href={x.ticketUrl} variant="inline">EventCove</TicketLink></dd></div>
           <div><dt>House rules</dt><dd className="small"><Link href="/house-rules">Read the house rules</Link></dd></div>
           {x.carpoolUrl && <div><dt>Carpool</dt><dd className="small"><a href={x.carpoolUrl} target="_blank" rel="noopener noreferrer">Join the carpool</a></dd></div>}
         </dl>
