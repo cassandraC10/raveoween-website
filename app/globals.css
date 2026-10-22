@@ -1,0 +1,249 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-void: #030303;
+  --color-blood: #6f0808;
+  --color-red: #b80f0f;
+  --color-hot: #ff2a1c;
+  --color-bone: #e9e1d7;
+  --color-ash: #9a8c86;
+
+  --font-display: 'Pirata One', UnifrakturCook, Georgia, serif;
+  --font-type: 'Special Elite', 'Courier New', monospace;
+
+  --spacing-pad: clamp(1.25rem, 5vw, 5rem);
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@layer utilities {
+  /* ==========================================================
+   Raveoween design tokens + motion language.
+   Ported from the production site (style.css): black, blood red, a little bone.
+   ========================================================== */
+  :root {
+    --void: #030303;
+    --blood: #6f0808;
+    --red: #b80f0f;
+    --hot: #ff2a1c;
+    --bone: #e9e1d7;
+    --ash: #9a8c86;
+    --ease: cubic-bezier(0.7, 0, 0.2, 1);
+    --pad: clamp(1.25rem, 5vw, 5rem);
+    --mx: 0;
+    --my: 0;
+  }
+}
+
+@layer base {
+  html { background: var(--void); color: var(--bone); -webkit-text-size-adjust: 100%; overflow-x: clip; scroll-behavior: auto; }
+  body { @apply font-type; margin: 0; font-size: clamp(.95rem, 1.6vw, 1.1rem); line-height: 1.6; background: var(--void); overflow-x: clip; -webkit-font-smoothing: antialiased; }
+  img, video { display: block; max-width: 100%; height: auto; }
+  h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; padding: 0; }
+  ul, ol { list-style: none; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--hot); outline-offset: 4px; }
+  ::selection { background: var(--red); color: var(--void); }
+  html.menu-open, html.intro-lock { overflow: hidden; }
+}
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: fixed; left: 1rem; top: -4rem; z-index: 200; background: var(--red); color: var(--void); padding: .6rem 1rem; text-decoration: none; }
+.skip:focus { top: 1rem; }
+
+/* ---------- atmosphere ---------- */
+.grain, .vignette, .glow, .flash { position: fixed; pointer-events: none; z-index: 60; }
+.grain { inset: -50%; width: 200%; height: 200%; opacity: .11; animation: grain .9s steps(6) infinite;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+@keyframes grain { 0%{transform:translate(0,0)} 17%{transform:translate(-6%,4%)} 33%{transform:translate(5%,-7%)} 50%{transform:translate(-3%,8%)} 67%{transform:translate(7%,3%)} 83%{transform:translate(-8%,-4%)} 100%{transform:translate(0,0)} }
+.vignette { inset: 0; background: radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.78) 100%); }
+.glow { top: 0; left: 0; width: 0; height: 0; opacity: 0; transition: opacity .6s; }
+.glow::after { content: ''; position: absolute; left: -260px; top: -260px; width: 520px; height: 520px; background: radial-gradient(circle, rgba(255,42,28,.17), transparent 65%); mix-blend-mode: screen; }
+.glow.on { opacity: 1; }
+.flash { inset: 0; opacity: 0; z-index: 90; background: radial-gradient(ellipse at 50% 30%, #fff1ee 0%, rgba(255,90,70,.7) 45%, rgba(255,30,20,.2) 100%); }
+.flash.go { animation: flash .9s ease-out 1; }
+@keyframes flash { 0%{opacity:0} 8%{opacity:.9} 20%{opacity:.15} 30%{opacity:.7} 100%{opacity:0} }
+
+/* ---------- loader ---------- */
+.intro { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; background: #000; clip-path: inset(0); }
+.intro .count { font-family: 'Pirata One', serif; font-size: clamp(6rem, 26vw, 15rem); line-height: .9; color: var(--red); font-variant-numeric: tabular-nums; text-shadow: 0 0 40px rgba(184,15,15,.55); text-align: center; }
+.intro .msg { margin-top: 1rem; text-align: center; color: var(--ash); letter-spacing: .08em; min-height: 1.6em; }
+.intro-line { position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; background: var(--hot); box-shadow: 0 0 24px 4px rgba(255,42,28,.8); opacity: 0; }
+.intro.flick .count { animation: shake .35s steps(2) 1; }
+.intro.off { clip-path: inset(49.7% 0 49.7% 0); transition: clip-path .65s var(--ease); }
+.intro.off .intro-inner { opacity: 0; transition: opacity .2s; }
+.intro.off .intro-line { opacity: 1; transition: opacity .2s .35s; }
+.intro.gone { opacity: 0; transition: opacity .35s; pointer-events: none; }
+@keyframes shake { 0%{transform:translate(-6px,2px) skewX(6deg)} 50%{transform:translate(7px,-3px) skewX(-8deg)} 100%{transform:none} }
+
+/* ---------- header ---------- */
+.bar { position: fixed; top: 0; left: 0; right: 0; z-index: 70; display: flex; align-items: center; justify-content: space-between; padding: max(.9rem, env(safe-area-inset-top)) var(--pad) .9rem; background: linear-gradient(to bottom, rgba(0,0,0,.92), rgba(0,0,0,.55) 70%, transparent); }
+.bar-link { text-decoration: none; font-size: .9rem; letter-spacing: .12em; text-transform: uppercase; color: var(--bone); padding: .35rem 0; border-bottom: 1px solid transparent; transition: color .2s, border-color .2s; }
+.bar-link:hover, .bar-link[aria-current='page'] { color: var(--hot); border-color: var(--hot); }
+.sound { display: inline-flex; align-items: center; gap: .55rem; background: none; border: 1px solid var(--blood); padding: .45rem .8rem; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ash); transition: border-color .2s, color .2s; min-height: 2.5rem; }
+.sound:hover { border-color: var(--red); }
+.sound[aria-pressed='true'] { border-color: var(--red); color: var(--hot); }
+.eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 14px; }
+.eq i { display: block; width: 3px; height: 3px; background: currentColor; }
+.sound[aria-pressed='true'] .eq i { animation: eq .9s ease-in-out infinite; }
+.sound[aria-pressed='true'] .eq i:nth-child(2) { animation-delay: -.3s; }
+.sound[aria-pressed='true'] .eq i:nth-child(3) { animation-delay: -.6s; }
+.sound[aria-pressed='true'] .eq i:nth-child(4) { animation-delay: -.15s; }
+@keyframes eq { 0%,100%{height:3px} 50%{height:14px} }
+.menu-panel { position: fixed; inset: 0; z-index: 65; background: rgba(3,3,3,.97); display: flex; flex-direction: column; justify-content: center; padding: 6rem var(--pad) 3rem; gap: .2rem; }
+.menu-panel a { font-family: 'Pirata One', serif; font-size: clamp(2.6rem, 11vw, 4.5rem); line-height: 1.1; text-decoration: none; color: var(--bone); }
+.menu-panel a:hover, .menu-panel a[aria-current='page'] { color: var(--hot); }
+
+/* ---------- type + buttons ---------- */
+.h1, .h2 { font-family: 'Pirata One', serif; font-weight: 400; color: var(--red); text-shadow: 0 0 50px rgba(184,15,15,.35); }
+.h1 { font-size: clamp(3.4rem, 13vw, 10rem); line-height: .85; }
+.h2 { font-size: clamp(2.8rem, 10vw, 7rem); line-height: .88; }
+.h1 span, .h2 span { font-size: .38em; color: var(--ash); text-shadow: none; letter-spacing: .04em; }
+.eyebrow { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--hot); }
+.lead { max-width: 52ch; color: var(--bone); }
+.muted { color: var(--ash); }
+.btn-enter { position: relative; overflow: hidden; isolation: isolate; display: inline-block; text-decoration: none; text-align: center; font-family: 'Pirata One', serif; font-size: clamp(1.5rem, 4vw, 2.3rem); line-height: 1; padding: .6em 1.5em; background: none; border: 2px solid var(--red); color: var(--bone); transition: color .3s, box-shadow .3s; }
+.btn-enter::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--red); transform: translateY(101%); transition: transform .4s var(--ease); }
+.btn-enter:hover, .btn-enter:focus-visible { color: var(--void); box-shadow: 0 0 40px rgba(184,15,15,.55); }
+.btn-enter:hover::before, .btn-enter:focus-visible::before { transform: none; }
+.btn-quiet { background: none; border: 0; padding: .5rem; color: var(--ash); font-size: .95rem; text-decoration: underline; text-underline-offset: 4px; }
+.btn-quiet:hover { color: var(--bone); }
+.link-arrow { display: inline-flex; gap: .5rem; align-items: center; color: var(--bone); text-decoration: none; border-bottom: 1px solid var(--red); padding-bottom: .15rem; transition: color .2s, border-color .2s; }
+.link-arrow:hover { color: var(--hot); border-color: var(--hot); }
+.ticket { position: relative; display: block; isolation: isolate; overflow: hidden; padding: clamp(2rem, 6vw, 5rem) var(--pad); border-block: 1px solid var(--red); text-decoration: none; color: var(--red); text-align: center; transition: color .35s; }
+.ticket::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--red); transform: translateY(101%); transition: transform .55s var(--ease); }
+.ticket:hover, .ticket:focus-visible { color: var(--void); outline-offset: -8px; }
+.ticket:hover::before, .ticket:focus-visible::before { transform: none; }
+.ticket-text { display: block; font-family: 'Pirata One', serif; font-size: clamp(3.6rem, 16vw, 14rem); line-height: .82; animation: flicker 8s linear infinite; }
+
+/* ---------- hero ---------- */
+/* Gate layout, ported 1:1 from raveoween.com (style.css "2. gate"): every size is capped by viewport HEIGHT so the whole hero fits one screen. */
+.gate { position: relative; min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4.5rem var(--pad) 2rem; text-align: center; overflow: hidden; }
+.gate-02 { position: absolute; left: 50%; top: 50%; font-family: 'Pirata One', serif; font-size: clamp(20rem, 70vw, 62rem); line-height: .8; color: rgba(111,8,8,.22); transform: translate(-50%, -46%); user-select: none; white-space: nowrap; pointer-events: none; }
+.wordmark { position: relative; z-index: 2; width: min(92vw, 960px, 84vh); aspect-ratio: 1210 / 290; transform: translate3d(calc(var(--mx) * -8px), calc(var(--my) * -5px), 0); }
+.gate-sub { position: relative; z-index: 2; margin-top: clamp(.4rem, 1.5vw, 1rem); font-family: 'Pirata One', serif; font-size: clamp(1.4rem, min(5vw, 5vh), 3.2rem); letter-spacing: .12em; color: var(--red); }
+.wordmark img { width: 100%; height: 100%; object-fit: contain; }
+.wordmark::before, .wordmark::after { content: ''; position: absolute; inset: 0; opacity: 0; background: url(/brand/title.webp) center / contain no-repeat; }
+.wordmark.glitching::before { animation: gl-a .42s steps(2) 1; }
+.wordmark.glitching::after { animation: gl-b .42s steps(2) 1; filter: hue-rotate(-12deg) brightness(1.6); }
+@keyframes gl-a { 0%{opacity:.9;transform:translate(-14px,0);clip-path:inset(10% 0 62% 0)} 35%{opacity:.9;transform:translate(10px,0);clip-path:inset(55% 0 12% 0)} 70%{opacity:.7;transform:translate(-6px,0);clip-path:inset(30% 0 40% 0)} 100%{opacity:0;transform:none} }
+@keyframes gl-b { 0%{opacity:.9;transform:translate(12px,0);clip-path:inset(60% 0 8% 0)} 40%{opacity:.8;transform:translate(-9px,0);clip-path:inset(8% 0 70% 0)} 100%{opacity:0;transform:none} }
+.face { width: 100%; animation: flicker 7s linear infinite; }
+.face-btn { position: relative; z-index: 1; margin-top: clamp(-1.5rem, -2vw, 0rem); width: min(66vw, 470px, 40vh); padding: 0; border: 0; background: none; transform: translate3d(calc(var(--mx) * 16px), calc(var(--my) * 10px), 0); -webkit-tap-highlight-color: transparent; }
+.face-btn.scare .face { animation: none; filter: brightness(1.7) saturate(1.3) drop-shadow(0 0 30px rgba(255,42,28,.9)); }
+@keyframes flicker { 0%,100%{opacity:1} 4%{opacity:.82} 6%{opacity:1} 41%{opacity:1} 42%{opacity:.7} 43%{opacity:1} 77%{opacity:.9} 78%{opacity:1} }
+.countdown { display: flex; gap: clamp(.9rem, 4vw, 3rem); }
+.cd { display: flex; flex-direction: column; align-items: center; min-width: 2.6ch; }
+.cd b { font-family: 'Pirata One', serif; font-weight: 400; font-size: clamp(2.6rem, 9vw, 5rem); line-height: 1; font-variant-numeric: tabular-nums; color: var(--bone); }
+.cd span { font-size: .78rem; color: var(--ash); letter-spacing: .1em; text-transform: uppercase; }
+.cd b.tick { animation: tick .3s steps(2) 1; }
+@keyframes tick { 0% { color: var(--hot); transform: translateY(-2px); } 100% { color: var(--bone); transform: none; } }
+.countdown-done { position: relative; z-index: 2; font-family: 'Pirata One', serif; font-size: clamp(2rem, 7vw, 4rem); color: var(--hot); margin-top: 1rem; }
+/* Hero-only countdown / buttons (event pages keep the base sizes above) */
+.gate .countdown { position: relative; z-index: 2; margin-top: clamp(.6rem, 2vw, 1.4rem); }
+.gate .cd b { font-size: clamp(2.4rem, min(9vw, 9vh), 6rem); }
+.enter { position: relative; z-index: 2; margin-top: clamp(1rem, 3vh, 2.4rem); display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .6rem 1.6rem; }
+.enter .btn-enter { font-size: clamp(1.6rem, min(4.6vw, 5vh), 2.5rem); }
+.enter .btn-quiet { padding: .3rem .5rem; font-size: .9rem; }
+.enter-note { flex-basis: 100%; font-size: .8rem; color: var(--ash); letter-spacing: .06em; }
+.enter-note a { text-underline-offset: 4px; }
+.enter-note a:hover { color: var(--bone); }
+
+/* Staged entrance, as on production: hidden until the loader has opened (html.ready), then fade/flicker in.
+   Only under html.js, so no-JS visitors see everything; the 6s failsafe reveals it if "ready" is never set. */
+.js .gate-02, .js .wordmark, .js .gate-sub, .js .face-btn, .js .gate .countdown, .js .gate .countdown-done, .js .enter { opacity: 0; }
+.ready .gate-02 { animation: fadein 2.4s .2s forwards; }
+.ready .wordmark { animation: flickin 1.1s steps(1) forwards; }
+.ready .gate-sub { animation: fadein 1s .9s forwards; }
+.ready .face-btn { animation: flickin 1.3s .6s steps(1) forwards; }
+.ready .gate .countdown, .ready .gate .countdown-done { animation: fadein 1s 1.5s forwards; }
+.ready .enter { animation: fadein 1s 1.9s forwards; }
+.js:not(.ready) .gate-02, .js:not(.ready) .wordmark, .js:not(.ready) .gate-sub, .js:not(.ready) .face-btn, .js:not(.ready) .gate .countdown, .js:not(.ready) .gate .countdown-done, .js:not(.ready) .enter { animation: fadein .3s 6s forwards; }
+@keyframes fadein { to { opacity: 1; } }
+@keyframes flickin { 0% { opacity: 0; } 12% { opacity: 1; } 18% { opacity: .1; } 30% { opacity: .9; } 38% { opacity: 0; } 55% { opacity: 1; } 62% { opacity: .3; } 80% { opacity: 1; } 100% { opacity: 1; } }
+
+/* Gate responsive rules, from production */
+@media (max-width: 780px) { .face-btn { width: min(78vw, 420px, 38vh); } }
+@media (min-width: 781px) and (max-height: 820px) { .wordmark { width: min(92vw, 960px, 74vh); } .face-btn { width: min(66vw, 470px, 33vh); } .gate-sub { margin-top: 0; } }
+@media (max-width: 380px) { .gate .countdown { gap: .7rem; } .gate .cd b { font-size: 2.4rem; } }
+
+/* ---------- marquee ---------- */
+.marquee { overflow: hidden; border-block: 1px solid var(--blood); padding: .55rem 0; background: #000; }
+.marquee-track { display: flex; width: max-content; animation: marquee 32s linear infinite; }
+.marquee-track span { display: flex; align-items: center; flex-shrink: 0; font-family: 'Pirata One', serif; font-size: clamp(1.4rem, 3.6vw, 2.2rem); color: var(--bone); white-space: nowrap; }
+.marquee-track i { display: inline-block; width: .45em; height: .45em; margin: 0 1.2em; background: var(--red); transform: rotate(45deg); }
+@keyframes marquee { to { transform: translateX(-25%); } }
+
+/* ---------- scroll manifesto ---------- */
+.exp { position: relative; height: 320vh; --p: 0; }
+.exp-stick { position: sticky; top: 0; height: 100svh; overflow: hidden; display: grid; place-items: center; }
+.exp-face { position: absolute; inset: 0; margin: auto; width: min(120vw, 1100px); opacity: calc(.12 + var(--p) * .5); transform: scale(calc(.9 + var(--p) * .25)); filter: saturate(1.2); }
+.exp-copy { position: relative; z-index: 2; text-align: center; width: min(92vw, 1100px); padding: 0 1rem; }
+.mline { display: block; }
+.intro-l { font-size: clamp(.95rem, 2.6vw, 1.35rem); color: var(--bone); }
+.gathering { margin-top: .4em; font-family: 'Pirata One', serif; font-size: clamp(3.6rem, 12vw, 10rem); line-height: .88; color: var(--red); text-shadow: 0 0 60px rgba(184,15,15,.5); }
+.w { display: inline-block; opacity: .12; transform: translateY(.3em); transition: opacity .5s, transform .5s; margin-right: .28em; }
+.w.lit { opacity: 1; transform: none; }
+.rules { margin-top: clamp(1.4rem, 4vh, 3rem); }
+.rule { opacity: 0; transform: translateY(14px); transition: opacity .6s, transform .6s; letter-spacing: .06em; }
+.rule + .rule { margin-top: .4rem; }
+.rule.lit { opacity: 1; transform: none; }
+.rule b { font-weight: 400; color: var(--hot); }
+.scroll-cue { position: absolute; left: 50%; bottom: clamp(1.25rem, 3vh, 2.5rem); transform: translateX(-50%); z-index: 3; font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ash); white-space: nowrap; }
+.scroll-cue span { display: inline-block; color: var(--hot); animation: cue 1.4s ease-in-out infinite; }
+@keyframes cue { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+.exp.static { height: auto; }
+.exp.static .exp-stick { position: relative; height: auto; padding: 6rem 0; }
+.exp.static .w, .exp.static .rule { opacity: 1; transform: none; }
+.exp.static .scroll-cue { display: none; }
+
+/* ---------- reveal ---------- */
+.js .rv { opacity: 0; transform: translateY(28px); transition: opacity .9s, transform .9s var(--ease); }
+.js .rv.in { opacity: 1; transform: none; }
+
+/* ---------- flyers / cards ---------- */
+.frame { border: 1px solid var(--blood); box-shadow: 0 0 70px rgba(184,15,15,.18); overflow: hidden; transition: border-color .3s, box-shadow .3s; background: #000; }
+.card:hover .frame, .frame-btn:hover .frame, .frame-btn:focus-visible .frame { border-color: var(--red); box-shadow: 0 0 90px rgba(255,42,28,.3); }
+.frame-btn { display: block; width: 100%; background: none; border: 0; padding: 0; text-align: left; }
+.frame img { width: 100%; transition: transform .35s ease, filter .35s; }
+.frame-btn:hover img { transform: scale(1.025); filter: brightness(1.08); }
+.tag { display: inline-block; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; padding: .15rem .5rem; border: 1px solid var(--blood); color: var(--ash); }
+.tag.up { border-color: var(--hot); color: var(--hot); }
+.chip { display: inline-block; font-size: .82rem; padding: .1rem .55rem; border: 1px solid var(--blood); color: var(--bone); }
+.facts > div { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .4rem 1.5rem; padding: 1rem 0; border-top: 1px solid var(--blood); }
+.facts > div:last-child { border-bottom: 1px solid var(--blood); }
+.facts dt { color: var(--ash); font-size: .9rem; letter-spacing: .08em; text-transform: uppercase; }
+.facts dd { font-family: 'Pirata One', serif; font-size: clamp(1.8rem, 5vw, 3rem); line-height: 1; text-align: right; }
+.facts dd.small { font-family: 'Special Elite', monospace; font-size: 1rem; }
+.facts a { color: var(--hot); text-underline-offset: 4px; }
+.notice { border: 2px solid var(--red); padding: 1.1rem 1.4rem; display: flex; gap: 1rem; align-items: center; background: rgba(111,8,8,.18); }
+.notice b { font-family: 'Pirata One', serif; font-weight: 400; font-size: clamp(1.6rem, 4vw, 2.4rem); color: var(--hot); line-height: 1; }
+dialog.lightbox { background: #000; color: var(--bone); border: 1px solid var(--red); padding: 0; max-width: min(94vw, 760px); max-height: 94svh; overflow: auto; box-shadow: 0 0 120px rgba(184,15,15,.4); }
+dialog.lightbox::backdrop { background: rgba(0,0,0,.88); }
+.input { width: 100%; border: 1px solid var(--blood); border-radius: 0; background: #000; color: var(--bone); padding: .8rem; font: inherit; }
+.input:focus { border-color: var(--hot); outline: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .grain, .face, .ticket-text, .marquee-track, .scroll-cue span, .sound .eq i { animation: none !important; }
+  .js .rv { opacity: 1; transform: none; transition: none; }
+  .w, .rule { transition: none; }
+  .gate-02, .wordmark, .gate-sub, .face-btn, .gate .countdown, .gate .countdown-done, .enter { opacity: 1 !important; animation: none !important; }
+  .cd b.tick { animation: none !important; }
+}
+@media (hover: none), (max-width: 760px) { .grain { opacity: .08; animation-duration: 1.4s; } .glow { display: none; } }
