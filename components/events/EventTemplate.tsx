@@ -35,6 +35,7 @@ export function EventTemplate({ e }: { e: Edition }) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <header className="grid gap-10 px-pad pb-16 pt-36 md:grid-cols-[1.1fr_.9fr] md:items-start md:pt-44">
+        <div className="md:col-span-2"><Link href="/events" className="page-back"><span aria-hidden="true">←</span> Back to all events</Link></div>
         <div>
           <p className="eyebrow">{e.roman}</p>
           <h1 className="h1 mt-3">{title}</h1>

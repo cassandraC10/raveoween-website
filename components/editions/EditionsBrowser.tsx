@@ -19,9 +19,11 @@ export function EditionsBrowser({ items }: { items: Item[] }) {
   );
   return (
     <>
-      <div className="mb-10 flex flex-wrap items-center gap-3" role="group" aria-label="Filter editions">
-        {btn('all', `All (${items.length})`)}{btn('upcoming', 'Upcoming')}{btn('past', 'Past')}
-        <button type="button" aria-pressed={newest} onClick={() => setNewest((n) => !n)} className={`tag ml-auto min-h-10 px-4 ${newest ? 'up' : ''}`}>Newest first</button>
+      <div className="edition-filters mb-10" aria-label="Edition filters">
+        <div className="edition-filter-group" role="group" aria-label="Filter editions">
+          {btn('all', `All (${items.length})`)}{btn('upcoming', 'Upcoming')}{btn('past', 'Past')}
+        </div>
+        <button type="button" aria-pressed={newest} onClick={() => setNewest((n) => !n)} className={`tag edition-sort min-h-10 px-4 ${newest ? 'up' : ''}`}>Newest first</button>
       </div>
       <p className="sr" role="status" aria-live="polite">{shown.length} editions shown</p>
       <ul className="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

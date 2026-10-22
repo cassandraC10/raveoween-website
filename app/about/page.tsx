@@ -11,7 +11,7 @@ export const metadata = pageMeta('About', 'Raveoween is an underground electroni
 export default function AboutPage() {
   const past = editions.filter((e) => !isUpcoming(e)).length;
   const next = editions.filter((e) => isUpcoming(e)).length;
-  const milestones = editions.filter((e) => ['R1', 'R10', 'R19'].includes(e.id));
+  const milestones = editions.filter((e) => ['R1', 'R9', 'R19'].includes(e.id));
   return (
     <>
       <PageHero eyebrow="Brand story" title="About" sub="Raveoween" />

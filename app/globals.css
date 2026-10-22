@@ -361,3 +361,17 @@ dialog.lightbox::backdrop { background: rgba(0,0,0,.88); }
 .ticket-gate-footnote { margin-top: .75rem; color: var(--ash); font-size: .78rem; text-align: center; }
 
 .ticket:where(button) { width: 100%; background: transparent; border-inline: 0; cursor: pointer; }
+
+
+/* ---------- page navigation + edition filters ---------- */
+.page-back { display: inline-flex; align-items: center; gap: .55rem; color: var(--ash); font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--blood); padding: .35rem 0; transition: color .2s, border-color .2s; }
+.page-back:hover, .page-back:focus-visible { color: var(--hot); border-color: var(--hot); outline-offset: 4px; }
+.edition-filters { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; }
+.edition-filter-group { display: flex; flex-wrap: wrap; gap: .75rem; min-width: 0; }
+.edition-sort { display: inline-flex; align-items: center; justify-content: center; margin-left: auto; white-space: nowrap; }
+@media (max-width: 520px) {
+  .edition-filters { display: grid; grid-template-columns: minmax(0, 1fr); gap: .8rem; }
+  .edition-filter-group { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; }
+  .edition-filter-group .tag { min-width: 0; padding-inline: .25rem; font-size: .66rem; letter-spacing: .08em; white-space: nowrap; }
+  .edition-sort { margin-left: 0; width: 100%; justify-content: center; white-space: normal; }
+}

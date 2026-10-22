@@ -40,7 +40,7 @@ export default function CommunityPage() {
           <ul className="mt-6 space-y-4 text-lg">
             <li><b className="font-normal text-hot">21+ only.</b> This is mandatory and cannot be overridden by anyone.</li>
             <li>You agree to the <Link href="/house-rules" className="link-arrow">house rules</Link>, including no photos, video, live-streaming or recording.</li>
-            <li>A vouch is helpful, not required, and never a guarantee. Applicants without one may still apply and may wait longer.</li>
+            <li>A vouch is helpful, not required, and never a guarantee. Applicants without one may still apply but may wait longer.</li>
           </ul>
         </Reveal>
         <Reveal>

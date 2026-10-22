@@ -1,22 +1,372 @@
 [
- {"id":"R1","number":1,"roman":"I","title":"Raveoween","tagline":"Bring your alter ego to the rave","dateISO":"2024-11-01","dateLabel":"1 November 2024","time":"10PM – 6AM","location":"Nexthought Creative Hub","lineup":["Deji b2b Sons of Ubuntu","Dr Chi Chi","Icey b2b Sounds of Ace","Kevin LNDN","RONR"],"dateSource":"flyer day/month, year from filename","flyer":"r1","review":["Flyer lists 'DJ line up (A-Z)'; spelling of RONR should be confirmed.","Year taken from filename (flyer shows day and month only)."]},
- {"id":"R2","number":2,"roman":"II","title":"Raveoween","dateISO":null,"dateLabel":"Date to be confirmed","time":null,"lineup":[],"flyer":null,"review":["No R2 flyer in the supplied editions folder. Date, title and lineup unknown (falls between 1 Nov 2024 and 18 Jan 2025). Supply the flyer to complete this entry."]},
- {"id":"R3","number":3,"roman":"III","title":"Raveoween","dateISO":"2025-01-18","dateLabel":"18 January 2025","time":"10PM","lineup":["Kevin LNDN","AFTRS","Tigran","Dr K","Josh Mars"],"dateSource":"flyer day/month, year from filename","flyer":"r3","review":["Year taken from filename.","Flyer carries a venue logo (reads 'The Game Bar'); not published pending confirmation."]},
- {"id":"R4","number":4,"roman":"IV","title":"Raveoween","dateISO":"2025-02-15","dateLabel":"15 February 2025","time":"10PM","lineup":[],"dateSource":"flyer day/month, year from filename","flyer":"r4","review":["Year taken from filename.","Venue logo seen (The Game Bar); not published pending confirmation."]},
- {"id":"R5","number":5,"roman":"V","title":"Raveoween","dateISO":"2025-04-18","dateLabel":"18 April 2025","time":"10PM","lineup":["Tigran Sound","Dèji","Josh Mars","Billy's Room","Kolours"],"dateSource":"flyer day/month, year from filename","flyer":"r5","altFlyers":[{"file":"r5b","label":"Alternate creative (no lineup)"}],"review":["Two creatives supplied (lineup and no-lineup versions); confirm which is canonical.","'Tigran Sound' here vs 'Tigran' on R3: confirm same act.","Venue logo seen (The Game Bar); not published."]},
- {"id":"R6","number":6,"roman":"VI","title":"Raveoween","dateISO":"2025-05-17","dateLabel":"17 May 2025","time":"10PM","lineup":["Earthsurfing","AFTRS","Blackchide","Kolours","Codename KND"],"dateSource":"flyer day/month, year from filename","flyer":"r6","altFlyers":[{"file":"r6b","label":"Alternate creative (no lineup)"}],"review":["Two creatives supplied; confirm canonical one.","'Codename KND' vs 'K.N.D'/'KND' elsewhere: confirm same act.","Venue logo seen (The Game Bar); not published."]},
- {"id":"R7","number":7,"roman":"VII","title":"Raveoween","dateISO":"2025-06-20","dateLabel":"20 June 2025","time":"10PM","lineup":[],"dateSource":"flyer day/month, year from filename","flyer":"r7","review":["Year taken from filename.","Flyer carries a 'Pride in Lagos 2025' logo; confirm partnership wording before any public mention."]},
- {"id":"R8","number":8,"roman":"VIII","title":"Raveoween","subtitle":"Del Noi","dateISO":"2025-08-08","dateLabel":"8 August 2025","time":null,"lineup":["Del Noi"],"dateSource":"flyer day/month, year from filename","flyer":"r8","review":["Flyer shows no time.","Year taken from filename."]},
- {"id":"R9","number":9,"roman":"IX","title":"Raveoween","dateISO":"2025-09-30","dateLabel":"30 September 2025","time":"10PM","lineup":["Ayofawo","Tessa","Pitch","Yosa","Marina Road"],"dateSource":"flyer day/month, year from filename","flyer":"r9","review":["Names are set around a vinyl label; confirm spelling and that all five are performers."]},
- {"id":"R10","number":10,"roman":"X","title":"Raveoween","subtitle":"1 Year Anniversary","dateISO":"2025-11-01","dateLabel":"1 November 2025","time":"10PM","lineup":[],"dateSource":"flyer (day/month); year inferred","flyer":"r10","review":["CONFLICT: flyer says '1 Nov' but the filename says 'nov 8th 2025'. Site shows the flyer date. Confirm."]},
- {"id":"R11","number":11,"roman":"XI","title":"Raveoween","subtitle":"Kolours Extended","tagline":"The Alter Ego Gathering","dateISO":"2025-12-28","dateLabel":"28 December 2025","time":"10PM","lineup":["Kolours"],"dateSource":"flyer day/month, year from filename","flyer":"r11","review":["A second file 'r11 (b - ... (creative 2)' was supplied but shows a '30 Sept' vinyl design, not Dec 28. It is NOT used on the site. Replace or confirm."]},
- {"id":"R12","number":12,"roman":"XII","title":"Roddick's Valentine 2","dateISO":"2026-02-14","dateLabel":"14 February 2026","time":"9PM – 6AM","location":"Tarkwa Bay","lineup":[],"dateSource":"flyer day/month, year from filename","flyer":"r12","review":["Title read from flyer as \"Roddick's Valentine 2\"; confirm styling."]},
- {"id":"R13","number":13,"roman":"XIII","title":"Raveoween","dateISO":"2026-03-20","dateLabel":"20 March 2026","time":"10PM","lineup":["Axara","Josh Mars","Del Noi","Nasty Mane"],"dateSource":"flyer day/month, year from filename","flyer":"r13","review":[]},
- {"id":"R14","number":14,"roman":"XIV","title":"Raveoween","subtitle":"Extended","dateISO":"2026-04-30","dateLabel":"30 April 2026","time":null,"lineup":[],"dateSource":"flyer day/month; year inferred from sequence","flyer":"r14","review":["Filename says 'extended vol2'; flyer shows 'Extended' only. Confirm title.","Flyer shows no time. Year inferred."]},
- {"id":"R15","number":15,"roman":"XV","title":"Raveoween","subtitle":"Blind Rave","dateISO":"2026-05-22","dateLabel":"22 May 2026","time":"10PM","lineup":[],"dateSource":"flyer day/month; year inferred from sequence","flyer":"r15","review":["Filename has no date; year inferred from edition sequence. Confirm."]},
- {"id":"R16","number":16,"roman":"XVI","title":"Raveoween","dateISO":"2026-07-11","dateLabel":"11 July 2026","time":"10PM","lineup":[],"dateSource":"flyer day/month, year from filename","flyer":"r16","review":[]},
- {"id":"R17","number":17,"roman":"XVII","title":"Raveoween","subtitle":"On the Mainland","dateISO":"2026-08-08","dateLabel":"8 August 2026","time":"10PM","lineup":["Bade (Live)","BANZ","K.N.D","Marquay","Nasty Mane"],"dateSource":"flyer day/month, year from filename","flyer":"r17","review":["Flyer carries an '18+' badge (R1 also shows one). Not repeated in site copy; the approved public age rule per event needs confirming."]},
- {"id":"R18","number":18,"roman":"XVIII","title":"Raveoween","subtitle":"Extended","dateISO":"2026-09-05","dateLabel":"5 September 2026","time":"10PM","lineup":["Marquay b2b Finding Alli"],"dateSource":"flyer day/month, year from filename","flyer":"r18","review":["Filename typo 'Seot 5th'; flyer reads SEPT 5TH."]},
- {"id":"R19","number":19,"roman":"XIX","title":"Raveoween Anniversary","subtitle":"2nd Anniversary","dateISO":"2026-10-31","dateLabel":"31 October 2026","time":"9PM","startsAt":"2026-10-31T21:00:00+01:00","lineup":["Funsyde","Lollypop","K.N.D","BANZ","Momentum","Del Noi"],"dateSource":"flyer + product pack","flyer":"r19","eventSlug":"raveoween-anniversary","review":["Pack calls this 'Mother Anniversary'; flyer and live site say '2nd Anniversary'. Site uses 'Raveoween Anniversary / 2nd Anniversary'."]},
- {"id":"R20","number":20,"roman":"XX","title":"Blind Rave II","dateISO":"2026-12-05","dateLabel":"5 December 2026","time":"10PM","startsAt":"2026-12-05T22:00:00+01:00","lineup":[],"dateSource":"flyer + product pack","flyer":"r20","eventSlug":"blind-rave-ii","review":["Brief and pack say 'Blind Rave'; flyer says 'Blind Rave II' (R15 is 'Blind Rave'). Site uses 'Blind Rave II'."]}
+ {
+  "id": "R1",
+  "number": 1,
+  "roman": "I",
+  "title": "Raveoween",
+  "tagline": "Bring your alter ego to the rave",
+  "dateISO": "2024-11-01",
+  "dateLabel": "1 November 2024",
+  "time": "10PM – 6AM",
+  "location": "Nexthought Creative Hub",
+  "lineup": [
+   "Deji b2b Sons of Ubuntu",
+   "Dr Chi Chi",
+   "Icey b2b Sounds of Ace",
+   "Kevin LNDN",
+   "RONR"
+  ],
+  "dateSource": "flyer day/month, year from filename",
+  "flyer": "r1",
+  "review": [
+   "Flyer lists 'DJ line up (A-Z)'; spelling of RONR should be confirmed.",
+   "Year taken from filename (flyer shows day and month only)."
+  ]
+ },
+ {
+  "id": "R2",
+  "number": 2,
+  "roman": "II",
+  "title": "Raveoween",
+  "dateISO": "2025-01-18",
+  "dateLabel": "18 January 2025",
+  "time": "10PM",
+  "lineup": [
+   "Kevin LNDN",
+   "AFTRS",
+   "Tigran",
+   "Dr K",
+   "Josh Mars"
+  ],
+  "flyer": "r2",
+  "review": [
+   "Year taken from filename.",
+   "Flyer carries a venue logo (reads “The Game Bar”); not published pending confirmation."
+  ],
+  "dateSource": "flyer day/month, year from filename"
+ },
+ {
+  "id": "R3",
+  "number": 3,
+  "roman": "III",
+  "title": "Raveoween",
+  "dateISO": "2025-02-15",
+  "dateLabel": "15 February 2025",
+  "time": "10PM",
+  "lineup": [],
+  "dateSource": "flyer day/month, year from filename",
+  "flyer": "r3",
+  "review": [
+   "Year taken from filename.",
+   "Venue logo seen (The Game Bar); not published pending confirmation."
+  ]
+ },
+ {
+  "id": "R4",
+  "number": 4,
+  "roman": "IV",
+  "title": "Raveoween",
+  "dateISO": "2025-04-18",
+  "dateLabel": "18 April 2025",
+  "time": "10PM",
+  "lineup": [
+   "Tigran Sound",
+   "Dèji",
+   "Josh Mars",
+   "Billy's Room",
+   "Kolours"
+  ],
+  "dateSource": "flyer day/month, year from filename",
+  "flyer": "r4",
+  "review": [
+   "Venue logo seen (The Game Bar); not published. A second supplied April 18 creative is not shown because its printed V conflicts with the canonical IV numbering."
+  ]
+ },
+ {
+  "id": "R5",
+  "number": 5,
+  "roman": "V",
+  "title": "Raveoween",
+  "dateISO": "2025-05-17",
+  "dateLabel": "17 May 2025",
+  "time": "10PM",
+  "lineup": [
+   "Earthsurfing",
+   "AFTRS",
+   "Blackchide",
+   "Kolours",
+   "Codename KND"
+  ],
+  "dateSource": "flyer day/month, year from supplied filename",
+  "flyer": "r5",
+  "review": [
+   "Flyer spelling and capitalization retained from supplied creative."
+  ]
+ },
+ {
+  "id": "R6",
+  "number": 6,
+  "roman": "VI",
+  "title": "Raveoween",
+  "dateISO": "2025-06-20",
+  "dateLabel": "20 June 2025",
+  "time": "10PM",
+  "lineup": [],
+  "dateSource": "flyer day/month, year from filename",
+  "flyer": "r6",
+  "review": [
+   "Year taken from filename.",
+   "Flyer carries a “Pride in Lagos 2025” logo; confirm partnership wording before any public mention."
+  ]
+ },
+ {
+  "id": "R7",
+  "number": 7,
+  "roman": "VII",
+  "title": "Raveoween",
+  "dateISO": "2025-08-08",
+  "dateLabel": "8 August 2025",
+  "time": null,
+  "lineup": [
+   "Del Noi"
+  ],
+  "dateSource": "flyer day/month, year from filename",
+  "flyer": "r7",
+  "review": [
+   "Flyer shows no time.",
+   "Year taken from filename."
+  ],
+  "subtitle": "Del Noi"
+ },
+ {
+  "id": "R8",
+  "number": 8,
+  "roman": "VIII",
+  "title": "Raveoween",
+  "dateISO": "2025-09-30",
+  "dateLabel": "30 September 2025",
+  "time": "10PM",
+  "lineup": [
+   "Ayofawo",
+   "Tessa",
+   "Pitch",
+   "Yosa",
+   "Marina Road"
+  ],
+  "dateSource": "flyer day/month, year from filename",
+  "flyer": "r8",
+  "review": [
+   "Names are set around a vinyl label; confirm spelling and that all five are performers."
+  ]
+ },
+ {
+  "id": "R9",
+  "number": 9,
+  "roman": "IX",
+  "title": "Raveoween",
+  "dateISO": "2025-11-01",
+  "dateLabel": "1 November 2025",
+  "time": "10PM",
+  "lineup": [],
+  "dateSource": "flyer date; filename says 8 November 2025",
+  "flyer": "r9",
+  "review": [
+   "Date conflict: flyer reads 1 November, supplied filename says 8 November 2025. Displaying the date printed on the flyer pending confirmation."
+  ],
+  "subtitle": "1 Year Anniversary"
+ },
+ {
+  "id": "R10",
+  "number": 10,
+  "roman": "X",
+  "title": "Raveoween",
+  "dateISO": "2025-12-05",
+  "dateLabel": "5 December 2025",
+  "time": "10PM",
+  "lineup": [],
+  "dateSource": "supplied flyer and filename",
+  "flyer": "r10",
+  "review": [
+   "This is the 5 December 2025 disco-ball flyer; distinct from Blind Rave II on 5 December 2026."
+  ]
+ },
+ {
+  "id": "R11",
+  "number": 11,
+  "roman": "XI",
+  "title": "Raveoween",
+  "subtitle": "Kolours Extended",
+  "tagline": "The Alter Ego Gathering",
+  "dateISO": "2025-12-28",
+  "dateLabel": "28 December 2025",
+  "time": "10PM",
+  "lineup": [
+   "Kolours"
+  ],
+  "dateSource": "flyer day/month, year from filename",
+  "flyer": "r11",
+  "review": []
+ },
+ {
+  "id": "R12",
+  "number": 12,
+  "roman": "XII",
+  "title": "Roddick's Valentine 2",
+  "dateISO": "2026-02-14",
+  "dateLabel": "14 February 2026",
+  "time": "9PM – 6AM",
+  "location": "Tarkwa Bay",
+  "lineup": [],
+  "dateSource": "flyer day/month, year from filename",
+  "flyer": "r12",
+  "review": [
+   "Title read from flyer as \"Roddick's Valentine 2\"; confirm styling."
+  ]
+ },
+ {
+  "id": "R13",
+  "number": 13,
+  "roman": "XIII",
+  "title": "Raveoween",
+  "dateISO": "2026-03-20",
+  "dateLabel": "20 March 2026",
+  "time": "10PM",
+  "lineup": [
+   "Axara",
+   "Josh Mars",
+   "Del Noi",
+   "Nasty Mane"
+  ],
+  "dateSource": "flyer day/month, year from filename",
+  "flyer": "r13",
+  "review": []
+ },
+ {
+  "id": "R14",
+  "number": 14,
+  "roman": "XIV",
+  "title": "Raveoween",
+  "subtitle": "Extended",
+  "dateISO": "2026-04-30",
+  "dateLabel": "30 April 2026",
+  "time": null,
+  "lineup": [],
+  "dateSource": "flyer day/month; year inferred from sequence",
+  "flyer": "r14",
+  "review": [
+   "Filename says 'extended vol2'; flyer shows 'Extended' only. Confirm title.",
+   "Flyer shows no time. Year inferred."
+  ]
+ },
+ {
+  "id": "R15",
+  "number": 15,
+  "roman": "XV",
+  "title": "Raveoween",
+  "subtitle": "Blind Rave",
+  "dateISO": "2026-05-22",
+  "dateLabel": "22 May 2026",
+  "time": "10PM",
+  "lineup": [],
+  "dateSource": "flyer day/month; year inferred from sequence",
+  "flyer": "r15",
+  "review": [
+   "Filename has no date; year inferred from edition sequence. Confirm."
+  ]
+ },
+ {
+  "id": "R16",
+  "number": 16,
+  "roman": "XVI",
+  "title": "Raveoween",
+  "dateISO": "2026-07-11",
+  "dateLabel": "11 July 2026",
+  "time": "10PM",
+  "lineup": [],
+  "dateSource": "flyer day/month, year from filename",
+  "flyer": "r16",
+  "review": []
+ },
+ {
+  "id": "R17",
+  "number": 17,
+  "roman": "XVII",
+  "title": "Raveoween",
+  "subtitle": "On the Mainland",
+  "dateISO": "2026-08-08",
+  "dateLabel": "8 August 2026",
+  "time": "10PM",
+  "lineup": [
+   "Bade (Live)",
+   "BANZ",
+   "K.N.D",
+   "Marquay",
+   "Nasty Mane"
+  ],
+  "dateSource": "flyer day/month, year from filename",
+  "flyer": "r17",
+  "review": [
+   "Flyer carries an '18+' badge (R1 also shows one). Not repeated in site copy; the approved public age rule per event needs confirming."
+  ]
+ },
+ {
+  "id": "R18",
+  "number": 18,
+  "roman": "XVIII",
+  "title": "Raveoween",
+  "subtitle": "Extended",
+  "dateISO": "2026-09-05",
+  "dateLabel": "5 September 2026",
+  "time": "10PM",
+  "lineup": [
+   "Marquay b2b Finding Alli"
+  ],
+  "dateSource": "flyer day/month, year from filename",
+  "flyer": "r18",
+  "review": [
+   "Filename typo 'Seot 5th'; flyer reads SEPT 5TH."
+  ]
+ },
+ {
+  "id": "R19",
+  "number": 19,
+  "roman": "XIX",
+  "title": "Raveoween Anniversary",
+  "subtitle": "2nd Anniversary",
+  "dateISO": "2026-10-31",
+  "dateLabel": "31 October 2026",
+  "time": "9PM",
+  "startsAt": "2026-10-31T21:00:00+01:00",
+  "lineup": [
+   "Funsyde",
+   "Lollypop",
+   "K.N.D",
+   "BANZ",
+   "Momentum",
+   "Del Noi"
+  ],
+  "dateSource": "flyer + product pack",
+  "flyer": "r19",
+  "eventSlug": "raveoween-anniversary",
+  "review": [
+   "Pack calls this 'Mother Anniversary'; flyer and live site say '2nd Anniversary'. Site uses 'Raveoween Anniversary / 2nd Anniversary'."
+  ]
+ },
+ {
+  "id": "R20",
+  "number": 20,
+  "roman": "XX",
+  "title": "Blind Rave II",
+  "dateISO": "2026-12-05",
+  "dateLabel": "5 December 2026",
+  "time": "10PM",
+  "startsAt": "2026-12-05T22:00:00+01:00",
+  "lineup": [],
+  "dateSource": "flyer + product pack",
+  "flyer": "r20",
+  "eventSlug": "blind-rave-ii",
+  "review": [
+   "Brief and pack say 'Blind Rave'; flyer says 'Blind Rave II' (R15 is 'Blind Rave'). Site uses 'Blind Rave II'."
+  ]
+ }
 ]

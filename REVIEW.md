@@ -1,32 +1,30 @@
-# Metadata and content review (needs human sign-off before launch)
+# Metadata and content review (owner sign-off)
 
-Every flyer was inspected visually. Nothing below is guessed silently: each item is either published as read from the flyer or withheld.
+The catalogue now contains all 20 numbered editions and a flyer for every edition. The items below are genuine source ambiguities that remain visible for review; they are not missing-page or missing-flyer blockers.
 
-## Blocking / must resolve
-1. **R2 flyer is missing.** The editions folder has R1 and R3-R20 only. The site shows an honest "Flyer not yet supplied" card for Edition II. Supply the flyer + date to complete it.
-2. **R10 date conflict.** Flyer reads "1 Nov"; filename says "nov 8th 2025". The site shows 1 November 2025 (flyer wins).
-3. **R11 second creative is the wrong image.** The file `r11 (b - ... (creative 2)` shows a "30 Sept" vinyl design, not Kolours Extended Dec 28. It is **not used**.
+## Dates and titles to confirm
 
-## Naming
-4. Brief/pack say "Blind Rave, Edition XX"; the R20 flyer says **Blind Rave II** (R15 is "Blind Rave"). Site uses "Blind Rave II".
-5. Pack says "Mother Anniversary" for R19; flyer and live site say "2nd Anniversary". Site uses "Raveoween Anniversary / 2nd Anniversary".
-6. R14 filename says "extended vol2"; flyer says "Extended" only. Site shows "Extended".
+1. **R9 anniversary date:** the supplied flyer reads “1 Nov” while its filename says 8 November 2025. The catalogue currently displays 1 November 2025, matching the date printed on the artwork.
+2. **R14 title/time:** the filename says “Extended vol2”; the flyer says “Extended” and shows no time. The catalogue uses “Extended” and leaves the time blank.
+3. **R15 date:** the supplied Blind Rave I filename does not provide a date; 22 May 2026 is inferred from the edition sequence and should be confirmed.
+4. **R19 anniversary naming:** the pack says “Mother Anniversary”; the flyer and production site say “2nd Anniversary”. The site uses “Raveoween Anniversary / 2nd Anniversary”.
+5. **R20 naming:** the brief/pack says “Blind Rave”; the flyer says “Blind Rave II” (R15 is “Blind Rave”). The site uses “Blind Rave II”.
+6. R1 and R2–R9 years are partly taken from supplied filenames because some flyers show only day/month. R14/R15 years/dates are inferred from the edition sequence.
 
-## Dates inferred
-7. Flyers show day/month only; years come from filenames (R1, R3-R9, R11-R13, R16-R18) or edition sequence (R14, R15, R10). Please confirm.
-8. No time on the R8 and R14 flyers; none is shown.
+## Artwork / branding checks
 
-## Venues and logos (withheld pending approval)
-9. Logos reading "The Game Bar" appear on R3-R6; "Pride in Lagos 2025" on R7. **Not published.** Venues printed as text on flyers ARE shown: Nexthought Creative Hub (R1), Tarkwa Bay (R12).
+7. The canonical R4 flyer is labelled IV. A second April 18 creative is labelled V, so it is not displayed until the owner confirms whether it is an alternate or a separately numbered edition.
+8. “The Game Bar” logo appears on R2–R4 artwork; venue/logo wording is not separately stated in site copy pending approval.
+9. R6 artwork includes a “Pride in Lagos 2025” logo; confirm partnership wording before making any public claim.
+10. R8 has names placed around a vinyl label; confirm spelling and that all five names are performers.
+11. R1 spelling “RONR” should be confirmed. “Tigran” (R2) and “Tigran Sound” (R4), plus “Codename KND” (R5) and “K.N.D” (R17/R19), are retained as supplied rather than silently merged.
+12. R1 and R17 flyers carry an “18+” badge while the community rule is 21+. The public community rule is 21+; confirm whether event-specific age wording is needed on those older editions.
 
-## Age rules
-10. R1 and R17 flyers carry an "18+" badge, and the community rule is 21+. Event pages state **no** age rule (none is approved in the pack), and no copy claims EventCove enforces 21+. Decide the public per-event age line.
+## Release notes
 
-## Acts to confirm
-11. "Tigran" (R3) vs "Tigran Sound" (R5); "Codename KND" (R6) vs "K.N.D" (R17, R19); spelling of RONR (R1). Artists page merges only trivially identical spellings (case, accents, dots), so these stay separate.
-
-## Copy written for this release (founder approval)
-12. **/about** and **/community** are assembled only from the supplied bios, house-rules text, flyer taglines and the discovery pack. No new brand claims, but the wording is new. The community page describes planned scope ("Planned scope. Details may change") and says applications are not open.
-13. Archive links "Instagram highlights" / "What was shared on X" are carried over from the production site; confirm they are still approved.
-14. `robots.txt` blocks crawlers on `*.netlify.app` (staging). Revisit at cutover.
-15. Production-site video teaser (`halloween-is-coming.mp4`, 7 MB) is reused on the Anniversary page.
+- R10 is the 5 December 2025 disco-ball flyer.
+- R20 is Blind Rave II on 5 December 2026. These are separate editions.
+- The R11 artwork is the 28 December 2025 Kolours Extended flyer; the unrelated 30 September vinyl creative is not used for R11.
+- The community page describes planned scope and says applications are not open.
+- `robots.txt` blocks crawlers on `*.netlify.app`; revisit at production cutover.
+- The Anniversary page reuses the supplied `halloween-is-coming.mp4` teaser.
